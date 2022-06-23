@@ -13,4 +13,9 @@ public class ServiceUrl {
     static final String logoutService = "/logout";
     static final String editProfileService = "/editProfile";
     static final String editPassword = "/editPassword";
+    static final String addItemToCart = "/addItemToCart";
+    static final String deleteItem = "/deleteItem";
+    static final String decreaseItemInCart = "/decreaseItemInCart";
+
+    static final String showCart = "/cart";
 }

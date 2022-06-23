@@ -9,6 +9,11 @@
 <main class="mt-5 m-auto text-center container">
     <div class="row justify-content-md-center">
         <form class="col-md-3" action="/login" method="post">
+            <c:if test="${requestScope.pleaseLogin != null}">
+                <div class="alert alert-danger" role="alert">
+                    <fmt:message key="alert.pleaseLogin"/>
+                </div>
+            </c:if>
             <c:if test="${requestScope.registerSuccess != null}">
                 <div class="alert alert-success" role="alert">
                      <fmt:message key="success.registered"/>

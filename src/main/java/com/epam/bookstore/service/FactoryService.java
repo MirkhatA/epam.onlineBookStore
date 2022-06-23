@@ -21,6 +21,10 @@ public class FactoryService {
         serviceMap.put(logoutService, new LogoutService());
         serviceMap.put(editProfileService, new EditProfileService());
         serviceMap.put(editPassword, new EditPasswordService());
+        serviceMap.put(addItemToCart, new AddItemToCartService());
+        serviceMap.put(showCart, new ShowCartService());
+        serviceMap.put(decreaseItemInCart, new DecreaseItemInCartService());
+        serviceMap.put(deleteItem, new DeleteItemFromCartService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

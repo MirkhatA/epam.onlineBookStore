@@ -9,6 +9,12 @@
 
 <div class="container">
     <div class="row">
+        <c:if test="${requestScope.itemAddedToCart != null}">
+            <div class="alert alert-success" role="alert">
+                <fmt:message key="success.itemAddedToCart"/>
+            </div>
+        </c:if>
+
         <h1><fmt:message key="label.cart"/></h1>
         <div class="col-md-10 border">
             <table class="table table-hover">
@@ -19,12 +25,21 @@
                     <th scope="col">Total price</th>
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
+                <c:forEach var="cartItem" items="${sessionScope.cartList}">
+                    <tr>
+                        <td>
+                            <a href="/showBookDetails?id=${cartItem.bookId}">${cartItem.title}</a><br>
+                            <a href="/deleteItem?id=${cartItem.bookId}">delete</a>
+                        </td>
+                        <td>${cartItem.price}</td>
+                        <td>
+                            <a href="/decreaseItemInCart?id=${cartItem.bookId}">-</a>
+                                ${cartItem.quantity}
+                            <a href="/addItemToCart?id=${cartItem.bookId}">+</a>
+                        </td>
+                        <td>${cartItem.totalPrice}</td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
 

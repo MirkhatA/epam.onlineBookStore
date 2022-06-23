@@ -68,9 +68,14 @@
                 </div>
             </div>
 
+            <c:if test="${requestScope.itemAddedToCart != null}">
+                <div class="alert alert-success" role="alert">
+                    <fmt:message key="success.itemAddedToCart"/>
+                </div>
+            </c:if>
+
             <h2><fmt:message key="label.catalog"/></h2>
             <div class="row">
-
                 <c:forEach var="book" items="${sessionScope.books}">
                     <div class="card me-2 mt-2" style="width: 18rem;">
                         <img src="${book.image}" class="card-img-top" alt="...">
@@ -79,8 +84,9 @@
                             <p class="card-text">${book.authorName}</p>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="card-link"><fmt:message key="button.add"/></a>
-                            <a href="#" class="card-link"><fmt:message key="button.buy"/></a>
+                            <a href="/addItemToCart?id=${book.id}" class="btn btn-warning card-link">
+                                <fmt:message key="button.add"/>
+                            </a>
                         </div>
                     </div>
                 </c:forEach>

@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/cart.jsp">
+                            <a class="dropdown-item" href="/cart">
                                 <fmt:message key="label.cart"/>
                             </a>
                         </li>
