@@ -32,12 +32,16 @@ public class DecreaseItemInCartService implements Service {
             if (cartDao.getBookQuantityInCart(userId, bookId) == 1) {
                 cartDao.deleteBookFromCart(userId, bookId);
                 List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
+                Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
                 session.setAttribute("cartList", cartList);
+                session.setAttribute("totalPrice", totalPrice);
                 dispatcher = req.getRequestDispatcher(cartJsp);
                 dispatcher.forward(req, res);
             } else {
                 cartDao.decreaseBookInCart(userId, bookId);
                 List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
+                Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
+                session.setAttribute("totalPrice", totalPrice);
                 session.setAttribute("cartList", cartList);
                 dispatcher = req.getRequestDispatcher(cartJsp);
                 dispatcher.forward(req, res);

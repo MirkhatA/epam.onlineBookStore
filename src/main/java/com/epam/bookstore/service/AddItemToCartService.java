@@ -32,7 +32,9 @@ public class AddItemToCartService implements Service {
             if (cartDao.getBookQuantityInCart(userId, bookId) > 0) {
                 cartDao.increaseBookInCart(userId, bookId);
                 List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
+                Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
                 session.setAttribute("cartList", cartList);
+                session.setAttribute("totalPrice", totalPrice);
                 dispatcher = req.getRequestDispatcher(cartJsp);
                 dispatcher.forward(req, res);
             } else {

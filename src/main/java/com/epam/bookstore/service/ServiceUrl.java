@@ -12,10 +12,13 @@ public class ServiceUrl {
     static final String loginService = "/login";
     static final String logoutService = "/logout";
     static final String editProfileService = "/editProfile";
-    static final String editPassword = "/editPassword";
-    static final String addItemToCart = "/addItemToCart";
-    static final String deleteItem = "/deleteItem";
-    static final String decreaseItemInCart = "/decreaseItemInCart";
+    static final String editPasswordService = "/editPassword";
 
-    static final String showCart = "/cart";
+    static final String addItemToCartService = "/addItemToCart";
+    static final String deleteItemService = "/deleteItem";
+    static final String decreaseItemInCartService = "/decreaseItemInCart";
+    static final String showCartService = "/cart";
+
+    static final String makeOrderService = "/makeOrder";
+    static final String setOrderDataService = "/setOrderData";
 }

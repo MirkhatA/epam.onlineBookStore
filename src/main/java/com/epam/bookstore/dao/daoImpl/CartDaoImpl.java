@@ -19,6 +19,8 @@ public class CartDaoImpl implements CartDao {
     private static String INCREASE_BOOK_QUANTITY = "UPDATE cart SET quantity = quantity + 1 WHERE user_id=? AND book_id=?;";
     private static String DECREASE_BOOK_QUANTITY = "UPDATE cart SET quantity = quantity - 1 WHERE user_id=? AND book_id=?;";
     private static String DELETE_FROM_CART_BY_BOOK_ID = "DELETE FROM cart WHERE user_id=? AND book_id=?;";
+    private static String GET_TOTAL_PRICE = "SELECT SUM(b.price * c.quantity) AS total_price FROM cart c " +
+            "JOIN books b ON b.id = c.book_id WHERE user_id = ? AND language_id = ?;";
 
     ConnectionPool connectionPool;
     Connection connection;
@@ -107,6 +109,27 @@ public class CartDaoImpl implements CartDao {
         } finally {
             connectionPool.returnConnection(connection);
         }
+    }
+
+    @Override
+    public Double getTotalPriceFromCart(Long userId, Integer languageId) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        Double totalPrice = 0d;
+
+        try (PreparedStatement ps = connection.prepareStatement(GET_TOTAL_PRICE)){
+            ps.setLong(1, userId);
+            ps.setLong(2, languageId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                totalPrice = rs.getDouble("total_price");
+            }
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+
+        return totalPrice;
     }
 
     @Override

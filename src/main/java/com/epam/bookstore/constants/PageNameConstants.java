@@ -10,4 +10,6 @@ public class PageNameConstants {
     public static final String profileJsp = "/profile.jsp";
     public static final String changePasswordJsp = "/changePassword.jsp";
     public static final String cartJsp = "/cart.jsp";
+    public static final String orderAddressJsp = "/orderAddress.jsp";
+    public static final String orderCheckoutJsp = "/orderCheckout.jsp";
 }

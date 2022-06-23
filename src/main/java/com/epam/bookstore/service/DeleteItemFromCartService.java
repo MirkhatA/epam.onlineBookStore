@@ -31,7 +31,9 @@ public class DeleteItemFromCartService implements Service {
         if (userId != null) {
             cartDao.deleteBookFromCart(userId, bookId);
             List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
+            Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
             session.setAttribute("cartList", cartList);
+            session.setAttribute("totalPrice", totalPrice);
             dispatcher = req.getRequestDispatcher(cartJsp);
             dispatcher.forward(req, res);
         } else {

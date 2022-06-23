@@ -14,6 +14,11 @@
                 <fmt:message key="success.itemAddedToCart"/>
             </div>
         </c:if>
+        <c:if test="${requestScope.cartIsEmpty != null}">
+            <div class="alert alert-warning" role="alert">
+                <fmt:message key="alert.cartIsEmpty"/>
+            </div>
+        </c:if>
 
         <h1><fmt:message key="label.cart"/></h1>
         <div class="col-md-10 border">
@@ -46,9 +51,9 @@
         <div class="col-md-2 border">
             <b class="mt-4 mb-4">Checkout</b>
 
-            <h6 class="mt-4 mb-4">Total price: </h6>
+            <h6 class="mt-4 mb-4">Total price: ${sessionScope.totalPrice}</h6>
 
-            <button type="submit" class="btn btn-warning">Make order</button>
+            <a href="/makeOrder" class="btn btn-warning">Make order</a>
         </div>
     </div>
 

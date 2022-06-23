@@ -2,6 +2,7 @@ package com.epam.bookstore.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static com.epam.bookstore.service.ServiceUrl.*;
 
@@ -20,11 +21,13 @@ public class FactoryService {
         serviceMap.put(loginService, new LoginService());
         serviceMap.put(logoutService, new LogoutService());
         serviceMap.put(editProfileService, new EditProfileService());
-        serviceMap.put(editPassword, new EditPasswordService());
-        serviceMap.put(addItemToCart, new AddItemToCartService());
-        serviceMap.put(showCart, new ShowCartService());
-        serviceMap.put(decreaseItemInCart, new DecreaseItemInCartService());
-        serviceMap.put(deleteItem, new DeleteItemFromCartService());
+        serviceMap.put(editPasswordService, new EditPasswordService());
+        serviceMap.put(addItemToCartService, new AddItemToCartService());
+        serviceMap.put(showCartService, new ShowCartService());
+        serviceMap.put(decreaseItemInCartService, new DecreaseItemInCartService());
+        serviceMap.put(deleteItemService, new DeleteItemFromCartService());
+        serviceMap.put(makeOrderService, new MakeOrderService());
+        serviceMap.put(setOrderDataService, new SetOrderDataService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

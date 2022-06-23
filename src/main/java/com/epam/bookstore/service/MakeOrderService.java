@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-import static com.epam.bookstore.constants.PageNameConstants.cartJsp;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
-public class ShowCartService implements Service{
+public class MakeOrderService implements Service{
     CartDao cartDao = new CartDaoImpl();
 
     @Override
@@ -28,10 +28,19 @@ public class ShowCartService implements Service{
         Integer languageId = (Integer) session.getAttribute("languageId");
 
         List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
-        Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
-        session.setAttribute("totalPrice", totalPrice);
-        session.setAttribute("cartList", cartList);
-        dispatcher = req.getRequestDispatcher(cartJsp);
-        dispatcher.forward(req, res);
+
+        if (userId != null) {
+            if (!cartList.isEmpty()) {
+                dispatcher = req.getRequestDispatcher(orderAddressJsp);
+                dispatcher.forward(req, res);
+            } else {
+                req.setAttribute("cartIsEmpty", "Your cart is empty");
+                dispatcher = req.getRequestDispatcher(cartJsp);
+                dispatcher.forward(req, res);
+            }
+        } else {
+            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher.forward(req, res);
+        }
     }
 }
