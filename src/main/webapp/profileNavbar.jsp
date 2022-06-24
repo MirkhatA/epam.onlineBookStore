@@ -22,7 +22,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="/showAllOrders" class="nav-link link-dark">
                 <fmt:message key="label.orders"/>
             </a>
         </li>

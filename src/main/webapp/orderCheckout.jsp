@@ -26,7 +26,7 @@
 
         <div class="col-md-4 mt-5">
             <b><fmt:message key="label.totalPrice"/>: ${sessionScope.totalPrice}</b><br>
-            <a class="btn btn-warning" href="#"><fmt:message key="button.submitOrder"/></a>
+            <a class="btn btn-warning" href="/submitOrder"><fmt:message key="button.submitOrder"/></a>
 
             <table class="table table-hover">
                 <tr>

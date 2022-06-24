@@ -21,6 +21,7 @@ public class CartDaoImpl implements CartDao {
     private static String DELETE_FROM_CART_BY_BOOK_ID = "DELETE FROM cart WHERE user_id=? AND book_id=?;";
     private static String GET_TOTAL_PRICE = "SELECT SUM(b.price * c.quantity) AS total_price FROM cart c " +
             "JOIN books b ON b.id = c.book_id WHERE user_id = ? AND language_id = ?;";
+    private static String DELETE_ALL_FROM_CART = "DELETE FROM cart where user_id=?;";
 
     ConnectionPool connectionPool;
     Connection connection;
@@ -130,6 +131,19 @@ public class CartDaoImpl implements CartDao {
         }
 
         return totalPrice;
+    }
+
+    @Override
+    public void deleteAllFromCart(Long userId) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_ALL_FROM_CART)){
+            ps.setLong(1, userId);
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
     }
 
     @Override

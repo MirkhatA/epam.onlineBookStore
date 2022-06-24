@@ -34,7 +34,6 @@ public class SetOrderDataService implements Service{
             dispatcher = req.getRequestDispatcher(orderAddressJsp);
             dispatcher.forward(req, res);
         } else {
-            // orderDao.create();
             session.setAttribute("receiverName", order.getFullName());
             session.setAttribute("receiverAddress", order.getAddress());
             session.setAttribute("receiverMobile", order.getMobile());

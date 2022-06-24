@@ -28,6 +28,8 @@ public class FactoryService {
         serviceMap.put(deleteItemService, new DeleteItemFromCartService());
         serviceMap.put(makeOrderService, new MakeOrderService());
         serviceMap.put(setOrderDataService, new SetOrderDataService());
+        serviceMap.put(submitOrderService, new SubmitOrderService());
+        serviceMap.put(showAllOrdersService, new ShowAllOrdersService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

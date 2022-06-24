@@ -19,4 +19,6 @@ public interface CartDao extends Dao<Cart> {
     void deleteBookFromCart(Long userId, Long bookId) throws SQLException;
 
     Double getTotalPriceFromCart(Long userId, Integer languageId) throws SQLException;
+
+    void deleteAllFromCart(Long userId) throws SQLException;
 }

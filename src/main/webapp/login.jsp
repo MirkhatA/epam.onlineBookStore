@@ -40,7 +40,7 @@
             </div>
 
             <button class="w-100 btn btn-lg btn-primary mb-1 mt-4" type="submit"><fmt:message key="button.signIn"/></button>
-            <p class="mb-3 text-muted"><a href="#"><fmt:message key="button.signUp"/></a></p>
+            <p class="mb-3 text-muted"><a href="/registration.jsp"><fmt:message key="button.signUp"/></a></p>
         </form>
     </div>
 </main>

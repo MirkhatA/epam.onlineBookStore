@@ -5,6 +5,7 @@ import java.util.Date;
 public class Order {
 
     private Long id;
+    private Long userId;
     private String fullName;
     private Double totalPrice;
     private String address;
@@ -26,6 +27,14 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFullName() {
@@ -120,6 +129,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", fullName='" + fullName + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", address='" + address + '\'' +
