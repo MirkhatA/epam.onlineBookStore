@@ -27,8 +27,6 @@ public class ShowCartService implements Service{
         Long userId = (Long) session.getAttribute("userId");
         Integer languageId = (Integer) session.getAttribute("languageId");
 
-        System.out.println(languageId);
-
         List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
         Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
         session.setAttribute("totalPrice", totalPrice);
