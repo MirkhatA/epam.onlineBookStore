@@ -7,28 +7,29 @@
 
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Profile</span>
+        <span class="fs-4">Get all books</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/profile.jsp" class="nav-link link-dark">
-                <fmt:message key="label.profile"/>
+            <a href="/addBook.jsp" class="nav-link link-dark">
+                Add book
             </a>
         </li>
-        <li>
-            <a href="/cart.jsp" class="nav-link link-dark">
-                <fmt:message key="label.cart"/>
-            </a>
-        </li>
-        <li>
-            <a href="/showAllOrders" class="nav-link link-dark">
-                <fmt:message key="label.orders"/>
-            </a>
-        </li>
-        <li>
-            <a href="/changePassword.jsp" class="nav-link link-dark">
-                <fmt:message key="label.changePassword"/>
+    </ul>
+    <hr>
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <span class="fs-4">Get all users</span>
+    </a>
+    <hr>
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <span class="fs-4">Get all orders</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link link-dark">
+                Add order
             </a>
         </li>
     </ul>

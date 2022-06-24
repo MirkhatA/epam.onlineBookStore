@@ -22,7 +22,6 @@ public class LanguageFilter implements Filter {
 
         String languageName = (String) session.getAttribute("languageName");
 
-
         if (languageName == null) {
             session.setAttribute("languageName", defaultLanguageName);
             session.setAttribute("languageId", defaultLanguageId);

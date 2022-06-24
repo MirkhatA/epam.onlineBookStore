@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setLocale value="${sessionScope.languageName}"/>
 <fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
 <jsp:include page="header.jsp"/>
@@ -21,13 +21,13 @@
         </c:if>
 
         <h1><fmt:message key="label.cart"/></h1>
-        <div class="col-md-10 border">
+        <div class="col-md-10">
             <table class="table table-hover">
                 <tr>
-                    <th scope="col">Book title</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Total price</th>
+                    <th scope="col"><fmt:message key="label.bookTitle"/></th>
+                    <th scope="col"><fmt:message key="label.price"/></th>
+                    <th scope="col"><fmt:message key="label.amount"/></th>
+                    <th scope="col"><fmt:message key="label.totalPrice"/></th>
                 </tr>
 
                 <c:forEach var="cartItem" items="${sessionScope.cartList}">
@@ -51,9 +51,9 @@
         <div class="col-md-2 border">
             <b class="mt-4 mb-4">Checkout</b>
 
-            <h6 class="mt-4 mb-4">Total price: ${sessionScope.totalPrice}</h6>
+            <h6 class="mt-4 mb-4"><fmt:message key="label.totalPrice"/>: ${sessionScope.totalPrice}</h6>
 
-            <a href="/makeOrder" class="btn btn-warning">Make order</a>
+            <a href="/makeOrder" class="btn btn-warning"><fmt:message key="button.makeOrder"/></a>
         </div>
     </div>
 

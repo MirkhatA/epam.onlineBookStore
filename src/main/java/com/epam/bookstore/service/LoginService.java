@@ -38,8 +38,15 @@ public class LoginService implements Service {
             session.setAttribute("registeredDate", user.getRegisteredAt());
             session.setAttribute("roleId", user.getRoleId());
 
-            dispatcher = req.getRequestDispatcher(mainJsp);
-            dispatcher.forward(req, res);
+            if (user.getRoleId() == 2) {
+                session.setAttribute("isAdmin", true);
+                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher.forward(req, res);
+            } else {
+                session.setAttribute("isAdmin", false);
+                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher.forward(req, res);
+            }
         } else {
             req.setAttribute("wrongData", "Wrong data");
             dispatcher = req.getRequestDispatcher(loginJsp);

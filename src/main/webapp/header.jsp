@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setLocale value="${sessionScope.languageName}"/>
 <fmt:setBundle basename="messages"/>
 <html>
 <head>
@@ -24,6 +24,19 @@
                 <input type="search" class="form-control" placeholder="<fmt:message key="label.search" />" aria-label="Search">
             </form>
 
+            <ul class="navbar-nav me-3">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <c:out value="${sessionScope.languageName}"/>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/changeLanguage?id=1">English</a></li>
+                        <li><a class="dropdown-item" href="/changeLanguage?id=2">Русский</a></li>
+                    </ul>
+                </li>
+            </ul>
+
             <div class="flex-shrink-0 dropdown">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="row">
@@ -33,8 +46,8 @@
                         </svg>
                     </div>
                 </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
 
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <c:if test="${not empty sessionScope.email}">
                         <li>
                             <a class="dropdown-item" href="profile.jsp">
@@ -54,6 +67,15 @@
                                 <fmt:message key="label.logout"/>
                             </a>
                         </li>
+                        <c:if test="${sessionScope.isAdmin}">
+                            <li>
+                                <a class="dropdown-item" href="/adminPanel.jsp">
+                                    <c:if test="${not empty sessionScope.email}">
+                                        Admin panel
+                                    </c:if>
+                                </a>
+                            </li>
+                        </c:if>
                     </c:if>
                     <c:if test="${empty sessionScope.email}">
                     <li><a class="dropdown-item" href="/login.jsp"><fmt:message key="label.login"/></a></li>

@@ -28,8 +28,6 @@ public class ShowAllOrdersService implements Service {
         Integer languageId = (Integer) session.getAttribute("languageId");
         List<Order> orders = orderDao.getAllByUserId(userId, languageId);
 
-        System.out.println(orders);
-
         session.setAttribute("orders", orders);
         dispatcher = req.getRequestDispatcher(ordersJsp);
         dispatcher.forward(req, res);

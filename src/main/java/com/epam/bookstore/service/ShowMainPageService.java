@@ -31,7 +31,7 @@ public class ShowMainPageService implements Service{
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
-        Integer languageId =(Integer) session.getAttribute("languageId");
+        Integer languageId = (Integer) session.getAttribute("languageId");
 
         List<Genre> genres = genreDao.getAll(languageId);
         List<Book> books = bookDao.getAll(languageId);

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setLocale value="${sessionScope.languageName}"/>
 <fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
 <jsp:include page="header.jsp"/>
@@ -19,15 +19,15 @@
         <div class="col-md-10 border">
             <table class="table table-hover">
                 <tr>
-                    <th>Order id</th>
-                    <th>Receiver name</th>
-                    <th>Address</th>
-                    <th>Mobile number</th>
-                    <th>Comment</th>
-                    <th>Created date</th>
-                    <th>Total price</th>
-                    <th>Paid status</th>
-                    <th>Order status</th>
+                    <th>id</th>
+                    <th><fmt:message key="label.receiverName"/></th>
+                    <th><fmt:message key="label.address"/></th>
+                    <th><fmt:message key="label.mobile"/></th>
+                    <th><fmt:message key="label.comment"/></th>
+                    <th><fmt:message key="label.createdDate"/></th>
+                    <th><fmt:message key="label.totalPrice"/></th>
+                    <th><fmt:message key="label.paidStatus"/></th>
+                    <th><fmt:message key="label.orderStatus"/></th>
                 </tr>
 
                 <c:forEach var="order" items="${sessionScope.orders}">
