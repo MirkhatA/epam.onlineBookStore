@@ -6,33 +6,29 @@
 <fmt:setBundle basename="messages"/>
 
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
-    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Get all books</span>
-    </a>
-    <hr>
     <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="/allBooks" class="nav-link link-dark">
+                Get all books
+            </a>
+        </li>
         <li class="nav-item">
             <a href="/addBook.jsp" class="nav-link link-dark">
                 Add book
             </a>
         </li>
-    </ul>
-    <hr>
-    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Get all users</span>
-    </a>
-    <hr>
-    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Get all orders</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link link-dark">
-                Add order
+            <a href="/allUsers" class="nav-link link-dark">
+                Get all users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/allOrders" class="nav-link link-dark">
+                Get all orders
             </a>
         </li>
     </ul>
+
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li>

@@ -5,6 +5,7 @@ import com.epam.bookstore.dao.UserDao;
 import com.epam.bookstore.entity.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -19,13 +20,33 @@ public class UserDaoImpl implements UserDao {
             "mobile=? WHERE id=?;";
     private static final String GET_USER_PASSWORD_BY_ID = "SELECT password FROM users WHERE id=?;";
     private static final String UPDATE_USER_PASSWORD_BY_ID = "UPDATE users SET password=? WHERE id=?;";
+    private static final String GET_ALL_USERS = "SELECT * FROM users WHERE role_id=1";
+    private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
+    private static final String COUNT_TOTAL_ORDERS = "SELECT COUNT(*) AS total FROM `order` WHERE user_id=?;";
 
     private ConnectionPool connectionPool;
     private Connection connection;
 
     @Override
     public List<User> getAll(int languageId) throws SQLException {
-        return null;
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        List<User> users = new ArrayList<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(GET_ALL_USERS)){
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                setUserData(user, rs);
+                users.add(user);
+            }
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+
+        return users;
     }
 
     @Override
@@ -48,7 +69,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(5, user.getAddress());
             ps.setString(6, user.getMobile());
             ps.setDate(7, date);
-            ps.setString(8, user.getStatus());
+            ps.setString(8, "Active");
             ps.setInt(9, 1);
             ps.executeUpdate();
         } finally {
@@ -167,9 +188,43 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 password = rs.getString("password");
             }
+        } finally {
+            connectionPool.returnConnection(connection);
         }
 
         return password;
+    }
+
+    @Override
+    public void deleteUser(Long id) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_USER_BY_ID)){
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+    }
+
+    @Override
+    public Integer getOrdersNumber(Long userId) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        int total = 0;
+
+        try(PreparedStatement ps = connection.prepareStatement(COUNT_TOTAL_ORDERS)) {
+            ps.setLong(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                total = rs.getInt("total");
+            }
+        }
+
+        return total;
     }
 
     private void setUserData(User user, ResultSet rs) throws SQLException {

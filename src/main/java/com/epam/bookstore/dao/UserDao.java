@@ -14,4 +14,8 @@ public interface UserDao extends Dao<User> {
     void updatePassword(Long id, String password) throws SQLException;
 
     String getUserPassword(Long id) throws SQLException;
+
+    void deleteUser(Long id) throws SQLException;
+
+    Integer getOrdersNumber(Long userId) throws SQLException;
 }

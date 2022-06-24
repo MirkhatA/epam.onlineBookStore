@@ -31,6 +31,11 @@ public class FactoryService {
         serviceMap.put(submitOrderService, new SubmitOrderService());
         serviceMap.put(showAllOrdersService, new ShowAllOrdersService());
         serviceMap.put(changeLanguageService, new ChangeLanguageService());
+        serviceMap.put(adminAllBooksService, new AdminAllBooksService());
+        serviceMap.put(adminAllUsersService, new AdminAllUsersService());
+        serviceMap.put(deleteUserService, new AdminDeleteUserService());
+        serviceMap.put(allOrdersService, new AllOrdersService());
+        serviceMap.put(editOrderService, new EditOrderService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

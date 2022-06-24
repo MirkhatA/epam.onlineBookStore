@@ -24,4 +24,10 @@ public class ServiceUrl {
     static final String makeOrderService = "/makeOrder";
     static final String setOrderDataService = "/setOrderData";
     static final String submitOrderService = "/submitOrder";
+
+    static final String adminAllBooksService = "/allBooks";
+    static final String adminAllUsersService = "/allUsers";
+    static final String deleteUserService = "/deleteUser";
+    static final String allOrdersService = "/allOrders";
+    static final String editOrderService = "/editOrder";
 }
