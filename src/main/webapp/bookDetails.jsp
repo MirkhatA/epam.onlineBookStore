@@ -18,8 +18,8 @@
 
             <div class="border mt-4 rounded p-2">
                 <h4><fmt:message key="label.addToCart"/></h4>
-                <p><fmt:message key="label.price">: ${sessionScope.book.price}</p>
-                <a type="button" href="#" class="btn btn-primary"><fmt:message key="button.add"/></a>
+                <p><fmt:message key="label.price"/>: ${sessionScope.book.price}</p>
+                <a type="button" href="/addItemToCart?id=${sessionScope.book.id}" class="btn btn-primary"><fmt:message key="button.add"/></a>
             </div>
 
             <table class="table table-hover mt-5">
@@ -29,15 +29,15 @@
                 </tr>
                 <tr>
                     <th scope="col"><fmt:message key="label.author"/>:</th>
-                    <th scope="col"><a href="#">${sessionScope.book.authorName}</a></th>
+                    <th scope="col">${sessionScope.book.authorName}</th>
                 </tr>
                 <tr>
-                    <th scope="col">Жанр:</th>
-                    <th scope="col"><a href="#">${sessionScope.book.genre}</a></th>
+                    <th scope="col"><fmt:message key="label.genre"/></th>
+                    <th scope="col">${sessionScope.book.genre}</th>
                 </tr>
                 <tr>
-                    <th scope="col">Производитель:</th>
-                    <th scope="col"><a href="#">${sessionScope.book.publisherName}</a></th>
+                    <th scope="col"><fmt:message key="label.publisher"/>Производитель:</th>
+                    <th scope="col">${sessionScope.book.publisherName}</th>
                 </tr>
             </table>
         </div>
