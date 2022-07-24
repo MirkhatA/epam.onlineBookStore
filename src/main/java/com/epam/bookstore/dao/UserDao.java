@@ -3,8 +3,10 @@ package com.epam.bookstore.dao;
 import com.epam.bookstore.entity.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
-public interface UserDao extends Dao<User> {
+public interface UserDao {
+
     boolean isMobileTaken(String mobile) throws SQLException;
 
     boolean isEmailIsTaken(String email) throws SQLException;
@@ -18,4 +20,11 @@ public interface UserDao extends Dao<User> {
     void deleteUser(Long id) throws SQLException;
 
     Integer getOrdersNumber(Long userId) throws SQLException;
+
+    List<User> getAll(int languageId) throws SQLException;
+
+    void create(User user) throws SQLException;
+
+    void update(Long id, User user) throws SQLException;
+
 }

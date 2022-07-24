@@ -2,5 +2,11 @@ package com.epam.bookstore.dao;
 
 import com.epam.bookstore.entity.Author;
 
-public interface AuthorDao extends Dao<Author> {
+import java.sql.SQLException;
+import java.util.List;
+
+public interface AuthorDao {
+
+    List<Author> getAll(int languageId) throws SQLException;
+
 }

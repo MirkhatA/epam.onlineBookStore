@@ -50,10 +50,6 @@ public class OrderDaoImpl implements OrderDao {
         return orders;
     }
 
-    @Override
-    public Order getById(Long id, int languageId) throws SQLException {
-        return null;
-    }
 
     @Override
     public void create(Order order) throws SQLException {
@@ -75,11 +71,6 @@ public class OrderDaoImpl implements OrderDao {
         } finally {
             connectionPool.returnConnection(connection);
         }
-    }
-
-    @Override
-    public void update(Long id, Order order) throws SQLException {
-
     }
 
     @Override

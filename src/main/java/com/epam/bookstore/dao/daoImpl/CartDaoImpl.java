@@ -160,26 +160,6 @@ public class CartDaoImpl implements CartDao {
         }
     }
 
-    @Override
-    public List<Cart> getAll(int languageId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Cart getById(Long id, int languageId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void create(Cart cart) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, Cart cart) throws SQLException {
-
-    }
-
     private void setCartData(Cart cart, ResultSet rs) throws SQLException {
         cart.setBookId(rs.getLong("book_id"));
         cart.setTitle(rs.getString("title"));

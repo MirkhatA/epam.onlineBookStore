@@ -2,5 +2,9 @@ package com.epam.bookstore.dao;
 
 import com.epam.bookstore.entity.Genre;
 
-public interface GenreDao extends Dao<Genre> {
+import java.sql.SQLException;
+import java.util.List;
+
+public interface GenreDao {
+    List<Genre> getAll(int languageId) throws SQLException;
 }

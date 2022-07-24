@@ -80,17 +80,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void create(Book book) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, Book book) throws SQLException {
-
-    }
-
-
-    @Override
     public List<Book> getBooksByGenreId(Long genreId, int languageId) throws SQLException {
         List<Book> books = new ArrayList<>();
 

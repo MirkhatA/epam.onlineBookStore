@@ -50,11 +50,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(Long id, int languageId) throws SQLException {
-        return null;
-    }
-
-    @Override
     public void create(User user) throws SQLException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();

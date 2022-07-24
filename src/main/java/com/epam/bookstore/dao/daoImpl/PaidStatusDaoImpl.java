@@ -43,19 +43,4 @@ public class PaidStatusDaoImpl implements PaidStatusDao {
         return paidStatusList;
     }
 
-    @Override
-    public PaidStatus getById(Long id, int languageId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void create(PaidStatus paidStatus) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, PaidStatus paidStatus) throws SQLException {
-
-    }
-
 }

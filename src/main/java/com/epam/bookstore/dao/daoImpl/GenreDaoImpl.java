@@ -39,22 +39,6 @@ public class GenreDaoImpl implements GenreDao {
         return genres;
     }
 
-    @Override
-    public Genre getById(Long id, int languageId) {
-        return null;
-    }
-
-    @Override
-    public void create(Genre genre) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, Genre genre) throws SQLException {
-
-    }
-
-
     private void setGenreData(List<Genre> genres, ResultSet rs) throws SQLException {
         Genre genre = new Genre();
 

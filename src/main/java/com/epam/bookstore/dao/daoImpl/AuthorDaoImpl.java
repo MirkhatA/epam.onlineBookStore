@@ -39,22 +39,6 @@ public class AuthorDaoImpl implements AuthorDao {
         return authors;
     }
 
-    @Override
-    public Author getById(Long id, int languageId) {
-        return null;
-    }
-
-    @Override
-    public void create(Author author) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, Author author) throws SQLException {
-
-    }
-
-
     private void setGenreData(List<Author> authors, ResultSet rs) throws SQLException {
         Author author = new Author();
 

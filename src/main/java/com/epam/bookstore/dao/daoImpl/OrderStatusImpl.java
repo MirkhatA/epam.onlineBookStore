@@ -42,19 +42,4 @@ public class OrderStatusImpl implements OrderStatusDao {
 
         return orderStatusList;
     }
-
-    @Override
-    public OrderStatus getById(Long id, int languageId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void create(OrderStatus orderStatus) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Long id, OrderStatus orderStatus) throws SQLException {
-
-    }
 }
