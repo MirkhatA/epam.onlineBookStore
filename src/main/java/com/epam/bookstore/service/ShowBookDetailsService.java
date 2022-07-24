@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.bookDetailsJsp;
 
 public class ShowBookDetailsService implements Service {
@@ -23,12 +24,12 @@ public class ShowBookDetailsService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long bookId = Long.parseLong(req.getParameter("id"));
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Long bookId = Long.parseLong(req.getParameter(ID));
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         Book book = bookDao.getById(bookId, languageId);
 
-        session.setAttribute("book", book);
+        session.setAttribute(BOOK, book);
         dispatcher = req.getRequestDispatcher(bookDetailsJsp);
         dispatcher.forward(req, res);
     }

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class AdminDeleteUserService implements Service {
@@ -24,21 +25,21 @@ public class AdminDeleteUserService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
-        Long id = Long.valueOf(req.getParameter("id"));
+        Long id = Long.valueOf(req.getParameter(ID));
 
         if (isAdmin != null && isAdmin.equals(true)) {
             if (userDao.getOrdersNumber(id) > 0) {
-                session.setAttribute("hasOrders", true);
+                session.setAttribute(HAS_ORDERS, true);
                 dispatcher = req.getRequestDispatcher(allUsersJsp);
                 dispatcher.forward(req, res);
             } else {
                 userDao.deleteUser(id);
 
-                List<User> users = userDao.getAll(languageId);
-                session.setAttribute("users", users);
+                List<User> userList = userDao.getAll(languageId);
+                session.setAttribute(USER_LIST, userList);
                 dispatcher = req.getRequestDispatcher(allUsersJsp);
                 dispatcher.forward(req, res);
 

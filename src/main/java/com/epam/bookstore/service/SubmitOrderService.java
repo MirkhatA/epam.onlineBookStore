@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
 import static com.epam.bookstore.constants.PageNameConstants.changePasswordJsp;
 import static com.epam.bookstore.constants.PageNameConstants.ordersJsp;
 
@@ -27,21 +29,21 @@ public class SubmitOrderService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long user_id = (Long) session.getAttribute("userId");
+        Long user_id = (Long) session.getAttribute(USER_ID);
 
         Order order = new Order();
 
         order.setUserId(user_id);
-        order.setFullName((String) session.getAttribute("receiverName"));
-        order.setAddress((String) session.getAttribute("receiverAddress"));
-        order.setMobile((String) session.getAttribute("receiverMobile"));
-        order.setComment((String) session.getAttribute("comment"));
-        order.setPaymentWay((String) session.getAttribute("paymentWay"));
-        order.setTotalPrice((Double) session.getAttribute("totalPrice"));
+        order.setFullName((String) session.getAttribute(RECEIVER_NAME));
+        order.setAddress((String) session.getAttribute(RECEIVER_ADDRESS));
+        order.setMobile((String) session.getAttribute(RECEIVER_MOBILE));
+        order.setComment((String) session.getAttribute(COMMENT));
+        order.setPaymentWay((String) session.getAttribute(PAYMENT_WAY));
+        order.setTotalPrice((Double) session.getAttribute(TOTAL_PRICE));
         orderDao.create(order);
         cartDao.deleteAllFromCart(user_id);
 
-        req.setAttribute("orderCreated", "Your order created");
+        req.setAttribute(ORDER_CREATED, ORDER_CREATED_MSG);
         dispatcher = req.getRequestDispatcher(ordersJsp);
         dispatcher.forward(req, res);
     }

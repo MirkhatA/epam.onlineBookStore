@@ -10,14 +10,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static com.epam.bookstore.constants.Constants.*;
+
 public class EditOrderService implements Service {
     OrderDao orderDao = new OrderDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
-        Long orderId = Long.valueOf(req.getParameter("orderId"));
-        Long paidStatus = Long.valueOf(req.getParameter("isPaid"));
-        Long orderStatus = Long.valueOf(req.getParameter("orderStatus"));
+        Long orderId = Long.valueOf(req.getParameter(ORDER_ID));
+        Long paidStatus = Long.valueOf(req.getParameter(IS_PAID));
+        Long orderStatus = Long.valueOf(req.getParameter(ORDER_STATUS));
 
         System.out.println(paidStatus);
         System.out.println(orderStatus);

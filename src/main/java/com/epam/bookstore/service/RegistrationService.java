@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import static com.epam.bookstore.constants.PageNameConstants.loginJsp;
-import static com.epam.bookstore.constants.PageNameConstants.registrationJsp;
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class RegistrationService implements Service{
     UserDao userDao = new UserDaoImpl();
@@ -22,16 +23,16 @@ public class RegistrationService implements Service{
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
 
-        if (!req.getParameter("password").equals(req.getParameter("rePassword"))) {
-            req.setAttribute("passwordsAreDifferent", "These passwords are different");
+        if (!req.getParameter(PASSWORD).equals(req.getParameter(REPEAT_PASSWORD))) {
+            req.setAttribute(PASSWORDS_ARE_DIFFERENT, SAME_PASSWORDS_MSG);
             dispatcher = req.getRequestDispatcher(registrationJsp);
             dispatcher.forward(req, res);
-        } else if (userDao.isEmailIsTaken(req.getParameter("email"))) {
-            req.setAttribute("emailIsTaken", "This email is already taken");
+        } else if (userDao.isEmailIsTaken(req.getParameter(EMAIL))) {
+            req.setAttribute(EMAIL_IS_TAKEN, EMAIL_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(registrationJsp);
             dispatcher.forward(req, res);
-        } else if (userDao.isMobileTaken(req.getParameter("mobile"))) {
-            req.setAttribute("mobileIsTaken", "This mobile is already taken");
+        } else if (userDao.isMobileTaken(req.getParameter(MOBILE))) {
+            req.setAttribute(MOBILE_IS_TAKEN, PHONE_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(registrationJsp);
             dispatcher.forward(req, res);
         } else {
@@ -39,12 +40,12 @@ public class RegistrationService implements Service{
             setUserData(user, req);
             if (user.getFirstName().isEmpty() || user.getMobile().isEmpty() || user.getEmail().isEmpty() ||
                     user.getPassword().isEmpty()) {
-                req.setAttribute("emptyFields", "Please fill all data");
+                req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
                 dispatcher = req.getRequestDispatcher(registrationJsp);
                 dispatcher.forward(req, res);
             } else {
                 userDao.create(user);
-                req.setAttribute("registerSuccess", "You have successfully registered!");
+                req.setAttribute(REGISTER_SUCCESS, REGISTER_SUCCESS_MSG);
                 dispatcher = req.getRequestDispatcher(loginJsp);
                 dispatcher.forward(req, res);
             }
@@ -52,9 +53,9 @@ public class RegistrationService implements Service{
     }
 
     private void setUserData(User user, HttpServletRequest req) {
-        user.setFirstName(req.getParameter("firstName"));
-        user.setMobile(req.getParameter("mobile"));
-        user.setEmail(req.getParameter("email"));
-        user.setPassword(req.getParameter("password"));
+        user.setFirstName(req.getParameter(FIRST_NAME));
+        user.setMobile(req.getParameter(MOBILE));
+        user.setEmail(req.getParameter(EMAIL));
+        user.setPassword(req.getParameter(PASSWORD));
     }
 }

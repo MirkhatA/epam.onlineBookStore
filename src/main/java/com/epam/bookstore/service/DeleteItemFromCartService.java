@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class DeleteItemFromCartService implements Service {
@@ -24,20 +26,20 @@ public class DeleteItemFromCartService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long bookId = Long.valueOf(req.getParameter("id"));
-        Long userId = (Long) session.getAttribute("userId");
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Long bookId = Long.valueOf(req.getParameter(ID));
+        Long userId = (Long) session.getAttribute(USER_ID);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         if (userId != null) {
             cartDao.deleteBookFromCart(userId, bookId);
             List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
             Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
-            session.setAttribute("cartList", cartList);
-            session.setAttribute("totalPrice", totalPrice);
+            session.setAttribute(CART_LIST, cartList);
+            session.setAttribute(TOTAL_PRICE, totalPrice);
             dispatcher = req.getRequestDispatcher(cartJsp);
             dispatcher.forward(req, res);
         } else {
-            req.setAttribute("pleaseLogin", "Please login");
+            req.setAttribute(PLEASE_LOGIN, PLEASE_LOGIN_MSG);
             dispatcher = req.getRequestDispatcher(loginJsp);
             dispatcher.forward(req, res);
         }

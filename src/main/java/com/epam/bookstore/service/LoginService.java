@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class LoginService implements Service {
@@ -23,32 +25,32 @@ public class LoginService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String login = req.getParameter(LOGIN);
+        String password = req.getParameter(PASSWORD);
 
         User user = userDao.getUserByLoginAndPassword(login, password);
 
         if (user != null) {
-            session.setAttribute("userId", user.getId());
-            session.setAttribute("firstName", user.getFirstName());
-            session.setAttribute("lastName", user.getLastName());
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("address", user.getAddress());
-            session.setAttribute("mobile", user.getMobile());
-            session.setAttribute("registeredDate", user.getRegisteredAt());
-            session.setAttribute("roleId", user.getRoleId());
+            session.setAttribute(USER_ID, user.getId());
+            session.setAttribute(FIRST_NAME, user.getFirstName());
+            session.setAttribute(LAST_NAME, user.getLastName());
+            session.setAttribute(EMAIL, user.getEmail());
+            session.setAttribute(ADDRESS, user.getAddress());
+            session.setAttribute(MOBILE, user.getMobile());
+            session.setAttribute(REGISTERED_DATE, user.getRegisteredAt());
+            session.setAttribute(ROLE_ID, user.getRoleId());
 
             if (user.getRoleId() == 2) {
-                session.setAttribute("isAdmin", true);
+                session.setAttribute(IS_ADMIN, true);
                 dispatcher = req.getRequestDispatcher(mainJsp);
                 dispatcher.forward(req, res);
             } else {
-                session.setAttribute("isAdmin", false);
+                session.setAttribute(IS_ADMIN, false);
                 dispatcher = req.getRequestDispatcher(mainJsp);
                 dispatcher.forward(req, res);
             }
         } else {
-            req.setAttribute("wrongData", "Wrong data");
+            req.setAttribute(WRONG_DATA, WRONG_LOGIN_OR_PASS_MSG);
             dispatcher = req.getRequestDispatcher(loginJsp);
             dispatcher.forward(req, res);
         }

@@ -14,9 +14,11 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class AdminAllUsersService implements Service {
+
     UserDao userDao = new UserDaoImpl();
 
     @Override
@@ -24,14 +26,14 @@ public class AdminAllUsersService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Integer languageId = (Integer) session.getAttribute("languageId");
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
+        Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
 
 
         if (isAdmin != null && isAdmin.equals(true)) {
-            List<User> users = userDao.getAll(languageId);
+            List<User> userList = userDao.getAll(languageId);
 
-            session.setAttribute("users", users);
+            session.setAttribute(USER_LIST, userList);
             dispatcher = req.getRequestDispatcher(allUsersJsp);
             dispatcher.forward(req, res);
         } else {

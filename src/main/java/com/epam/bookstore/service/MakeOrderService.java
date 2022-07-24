@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class MakeOrderService implements Service{
@@ -24,8 +25,8 @@ public class MakeOrderService implements Service{
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long userId = (Long) session.getAttribute("userId");
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Long userId = (Long) session.getAttribute(USER_ID);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
 
@@ -34,7 +35,7 @@ public class MakeOrderService implements Service{
                 dispatcher = req.getRequestDispatcher(orderAddressJsp);
                 dispatcher.forward(req, res);
             } else {
-                req.setAttribute("cartIsEmpty", "Your cart is empty");
+                req.setAttribute(CART_IS_EMPTY, CART_IS_EMPTY);
                 dispatcher = req.getRequestDispatcher(cartJsp);
                 dispatcher.forward(req, res);
             }

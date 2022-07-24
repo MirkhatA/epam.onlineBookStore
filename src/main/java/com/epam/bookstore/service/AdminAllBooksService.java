@@ -2,7 +2,6 @@ package com.epam.bookstore.service;
 
 import com.epam.bookstore.dao.BookDao;
 import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
-import com.epam.bookstore.entity.Book;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +12,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import static com.epam.bookstore.constants.PageNameConstants.*;
+import static com.epam.bookstore.constants.Constants.IS_ADMIN;
+import static com.epam.bookstore.constants.PageNameConstants.allBooksJsp;
+import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
 
 public class AdminAllBooksService implements Service {
+
+
     BookDao bookDao = new BookDaoImpl();
 
     @Override
@@ -23,7 +26,7 @@ public class AdminAllBooksService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
 
         if (isAdmin != null && isAdmin.equals(true)) {
             dispatcher = req.getRequestDispatcher(allBooksJsp);

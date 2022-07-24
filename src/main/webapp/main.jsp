@@ -16,7 +16,7 @@
                         <span><fmt:message key="label.genres"/></span>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                        <c:forEach var="genre" items="${sessionScope.genres}">
+                        <c:forEach var="genre" items="${sessionScope.genreList}">
                             <li class="nav-item">
                                 <a class="nav-link" href="/showBooksByGenreId?id=${genre.id}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -40,7 +40,7 @@
                         <span><fmt:message key="label.authors"/></span>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                        <c:forEach var="author" items="${sessionScope.authors}">
+                        <c:forEach var="author" items="${sessionScope.authorList}">
                             <li class="nav-item">
                                 <a class="nav-link" href="/showBooksByAuthorId?id=${author.id}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -76,7 +76,7 @@
 
             <h2><fmt:message key="label.catalog"/></h2>
             <div class="row">
-                <c:forEach var="book" items="${sessionScope.books}">
+                <c:forEach var="book" items="${sessionScope.bookList}">
                     <div class="card me-2 mt-2" style="width: 18rem;">
                         <img src="${book.image}" class="card-img-top" alt="...">
                         <div class="card-body">

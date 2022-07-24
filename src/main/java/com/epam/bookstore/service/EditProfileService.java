@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Objects;
 
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class EditProfileService implements Service {
@@ -24,47 +26,47 @@ public class EditProfileService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        String email = (String) session.getAttribute("email");
-        String mobile = (String) session.getAttribute("mobile");
+        String email = (String) session.getAttribute(EMAIL);
+        String mobile = (String) session.getAttribute(MOBILE);
 
         User user = new User();
         setUserData(user, req);
 
 
-        if (userDao.isEmailIsTaken(req.getParameter("email")) &&
-                !Objects.equals(req.getParameter("email"), email)) {
-            req.setAttribute("emailIsTaken", "This email is already taken");
+        if (userDao.isEmailIsTaken(req.getParameter(EMAIL)) &&
+                !Objects.equals(req.getParameter(EMAIL), email)) {
+            req.setAttribute(EMAIL_IS_TAKEN, EMAIL_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(profileJsp);
             dispatcher.forward(req, res);
-        } else if (userDao.isMobileTaken(req.getParameter("mobile")) &&
-                !Objects.equals(req.getParameter("mobile"), mobile)) {
-            req.setAttribute("mobileIsTaken", "This mobile is already taken");
+        } else if (userDao.isMobileTaken(req.getParameter(MOBILE)) &&
+                !Objects.equals(req.getParameter(MOBILE), mobile)) {
+            req.setAttribute(MOBILE_IS_TAKEN, PHONE_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(profileJsp);
             dispatcher.forward(req, res);
         } else if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmail().isEmpty() ||
                 user.getAddress().isEmpty() || user.getMobile().isEmpty()) {
-            req.setAttribute("emptyFields", "Please fill all data");
+            req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
         } else {
-            Long id = (Long) session.getAttribute("userId");
+            Long id = (Long) session.getAttribute(USER_ID);
             userDao.update(id, user);
 
-            session.setAttribute("firstName", user.getFirstName());
-            session.setAttribute("lastName", user.getLastName());
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("address", user.getAddress());
-            session.setAttribute("mobile", user.getMobile());
+            session.setAttribute(FIRST_NAME, user.getFirstName());
+            session.setAttribute(LAST_NAME, user.getLastName());
+            session.setAttribute(EMAIL, user.getEmail());
+            session.setAttribute(ADDRESS, user.getAddress());
+            session.setAttribute(MOBILE, user.getMobile());
 
-            req.setAttribute("editProfileSuccess", "You have successfully updated your profile data!");
+            req.setAttribute(EDIT_PROFILE_SUCCESS, PROFILE_UPDATE_SUCCESS_MSG);
         }
         dispatcher = req.getRequestDispatcher(profileJsp);
         dispatcher.forward(req, res);
     }
 
     private void setUserData(User user, HttpServletRequest req) {
-        user.setFirstName(req.getParameter("firstName"));
-        user.setLastName(req.getParameter("lastName"));
-        user.setEmail(req.getParameter("email"));
-        user.setAddress(req.getParameter("address"));
-        user.setMobile(req.getParameter("mobile"));
+        user.setFirstName(req.getParameter(FIRST_NAME));
+        user.setLastName(req.getParameter(LAST_NAME));
+        user.setEmail(req.getParameter(EMAIL));
+        user.setAddress(req.getParameter(ADDRESS));
+        user.setMobile(req.getParameter(MOBILE));
     }
 }

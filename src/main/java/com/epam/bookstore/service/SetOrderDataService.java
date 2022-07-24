@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class SetOrderDataService implements Service{
@@ -24,21 +26,21 @@ public class SetOrderDataService implements Service{
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long userId = (Long) session.getAttribute("userId");
+        Long userId = (Long) session.getAttribute(USER_ID);
         Order order = new Order();
         setOrderData(order, req);
 
         if (order.getFullName().isEmpty() || order.getMobile().isEmpty() || order.getAddress().isEmpty() ||
                 order.getPaymentWay().isEmpty()) {
-            req.setAttribute("emptyFields", "Please fill all data");
+            req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
             dispatcher = req.getRequestDispatcher(orderAddressJsp);
             dispatcher.forward(req, res);
         } else {
-            session.setAttribute("receiverName", order.getFullName());
-            session.setAttribute("receiverAddress", order.getAddress());
-            session.setAttribute("receiverMobile", order.getMobile());
-            session.setAttribute("comment", order.getComment());
-            session.setAttribute("paymentWay", order.getPaymentWay());
+            session.setAttribute(RECEIVER_NAME, order.getFullName());
+            session.setAttribute(RECEIVER_ADDRESS, order.getAddress());
+            session.setAttribute(RECEIVER_MOBILE, order.getMobile());
+            session.setAttribute(COMMENT, order.getComment());
+            session.setAttribute(PAYMENT_WAY, order.getPaymentWay());
 
             dispatcher = req.getRequestDispatcher(orderCheckoutJsp);
             dispatcher.forward(req, res);
@@ -46,10 +48,10 @@ public class SetOrderDataService implements Service{
     }
 
     private void setOrderData(Order order, HttpServletRequest req) {
-        order.setFullName(req.getParameter("fullName"));
-        order.setMobile(req.getParameter("mobile"));
-        order.setAddress(req.getParameter("address"));
-        order.setComment(req.getParameter("comment"));
-        order.setPaymentWay(req.getParameter("paymentWay"));
+        order.setFullName(req.getParameter(FULL_NAME));
+        order.setMobile(req.getParameter(MOBILE));
+        order.setAddress(req.getParameter(ADDRESS));
+        order.setComment(req.getParameter(COMMENT));
+        order.setPaymentWay(req.getParameter(PAYMENT_WAY));
     }
 }

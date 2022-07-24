@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.ordersJsp;
 
 public class ShowAllOrdersService implements Service {
@@ -24,11 +25,11 @@ public class ShowAllOrdersService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long userId = (Long) session.getAttribute("userId");
-        Integer languageId = (Integer) session.getAttribute("languageId");
-        List<Order> orders = orderDao.getAllByUserId(userId, languageId);
+        Long userId = (Long) session.getAttribute(USER_ID);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
+        List<Order> orderList = orderDao.getAllByUserId(userId, languageId);
 
-        session.setAttribute("orders", orders);
+        session.setAttribute(ORDER_LIST, orderList);
         dispatcher = req.getRequestDispatcher(ordersJsp);
         dispatcher.forward(req, res);
     }

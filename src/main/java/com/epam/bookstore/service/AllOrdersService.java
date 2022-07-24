@@ -9,8 +9,6 @@ import com.epam.bookstore.dao.daoImpl.PaidStatusDaoImpl;
 import com.epam.bookstore.entity.Order;
 import com.epam.bookstore.entity.OrderStatus;
 import com.epam.bookstore.entity.PaidStatus;
-import com.epam.bookstore.entity.User;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +20,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-import static com.epam.bookstore.constants.PageNameConstants.*;
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.PageNameConstants.allOrdersJsp;
+import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
 
 public class AllOrdersService implements Service {
     OrderDao orderDao = new OrderDaoImpl();
@@ -34,17 +34,17 @@ public class AllOrdersService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Integer languageId = (Integer) session.getAttribute("languageId");
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
+        Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
 
         if (isAdmin != null && isAdmin.equals(true)) {
             List<Order> orderList = orderDao.getAll(languageId);
-            List<PaidStatus> paidStatuses = paidStatusDao.getAll(languageId);
-            List<OrderStatus> orderStatuses = orderStatusDao.getAll(languageId);
+            List<PaidStatus> paidStatusList = paidStatusDao.getAll(languageId);
+            List<OrderStatus> orderStatusList = orderStatusDao.getAll(languageId);
 
-            session.setAttribute("paidStatuses", paidStatuses);
-            session.setAttribute("orderList", orderList);
-            session.setAttribute("orderStatuses", orderStatuses);
+            session.setAttribute(PAID_STATUS_LIST, paidStatusList);
+            session.setAttribute(ORDER_LIST, orderList);
+            session.setAttribute(ORDER_STATUS_LIST, orderStatusList);
             dispatcher = req.getRequestDispatcher(allOrdersJsp);
             dispatcher.forward(req, res);
         } else {

@@ -30,7 +30,7 @@
                 <th></th>
             </tr>
 
-            <c:forEach var="user" items="${sessionScope.users}">
+            <c:forEach var="user" items="${sessionScope.userList}">
                 <tr>
                     <td>${user.id}</td>
                     <td>${user.firstName}</td>

@@ -26,7 +26,7 @@
                 <th></th>
             </tr>
 
-            <c:forEach var="book" items="${sessionScope.books}">
+            <c:forEach var="book" items="${sessionScope.bookList}">
                 <tr>
                     <td>${book.id}</td>
                     <td>${book.title}</td>

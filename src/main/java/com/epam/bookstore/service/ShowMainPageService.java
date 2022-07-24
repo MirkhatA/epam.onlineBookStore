@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
 
 public class ShowMainPageService implements Service{
@@ -31,15 +32,15 @@ public class ShowMainPageService implements Service{
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
-        List<Genre> genres = genreDao.getAll(languageId);
-        List<Book> books = bookDao.getAll(languageId);
-        List<Author> authors = authorDao.getAll(languageId);
+        List<Genre> genreList = genreDao.getAll(languageId);
+        List<Book> bookList = bookDao.getAll(languageId);
+        List<Author> authorList = authorDao.getAll(languageId);
 
-        session.setAttribute("genres", genres);
-        session.setAttribute("books", books);
-        session.setAttribute("authors", authors);
+        session.setAttribute(GENRE_LIST, genreList);
+        session.setAttribute(BOOK_LIST, bookList);
+        session.setAttribute(AUTHOR_LIST, authorList);
 
         dispatcher = req.getRequestDispatcher(mainJsp);
         dispatcher.forward(req, res);

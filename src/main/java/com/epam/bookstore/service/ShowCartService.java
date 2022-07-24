@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.cartJsp;
 
 public class ShowCartService implements Service{
@@ -24,13 +25,13 @@ public class ShowCartService implements Service{
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long userId = (Long) session.getAttribute("userId");
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Long userId = (Long) session.getAttribute(USER_ID);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         List<Cart> cartList = cartDao.getCartByUserId(userId, languageId);
         Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
-        session.setAttribute("totalPrice", totalPrice);
-        session.setAttribute("cartList", cartList);
+        session.setAttribute(TOTAL_PRICE, totalPrice);
+        session.setAttribute(CART_LIST, cartList);
         dispatcher = req.getRequestDispatcher(cartJsp);
         dispatcher.forward(req, res);
     }

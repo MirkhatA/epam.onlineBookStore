@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
 
 public class ShowBooksByGenreService implements Service {
@@ -25,12 +26,12 @@ public class ShowBooksByGenreService implements Service {
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
-        Long genreId = Long.parseLong(req.getParameter("id"));
-        Integer languageId = (Integer) session.getAttribute("languageId");
+        Long genreId = Long.parseLong(req.getParameter(ID));
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
-        List<Book> books = bookDao.getBooksByGenreId(genreId, languageId);
+        List<Book> bookList = bookDao.getBooksByGenreId(genreId, languageId);
 
-        session.setAttribute("books", books);
+        session.setAttribute(BOOK_LIST, bookList);
         dispatcher = req.getRequestDispatcher(mainJsp);
         dispatcher.forward(req, res);
     }
