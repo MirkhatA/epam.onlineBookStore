@@ -99,6 +99,30 @@ public class Book {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return Objects.equals(id, book.id) &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(description, book.description) &&
+                Objects.equals(image, book.image) &&
+                Objects.equals(quantity, book.quantity) &&
+                Objects.equals(price, book.price) &&
+                Objects.equals(authorName, book.authorName) &&
+                Objects.equals(publisherName, book.publisherName) &&
+                Objects.equals(languageId, book.languageId) &&
+                Objects.equals(genre, book.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, image, quantity, price, authorName, publisherName, languageId, genre);
+    }
+
+    @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +

@@ -1,5 +1,7 @@
 package com.epam.bookstore.entity;
 
+import java.util.Objects;
+
 public class Genre {
     private Long id;
     private String name;
@@ -30,6 +32,23 @@ public class Genre {
 
     public void setLanguageId(Integer languageId) {
         this.languageId = languageId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Genre genre = (Genre) o;
+
+        return Objects.equals(id, genre.id) &&
+                Objects.equals(name, genre.name) &&
+                Objects.equals(languageId, genre.languageId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, languageId);
     }
 
     @Override

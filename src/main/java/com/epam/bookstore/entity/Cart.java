@@ -1,5 +1,7 @@
 package com.epam.bookstore.entity;
 
+import java.util.Objects;
+
 public class Cart {
 
     private Long bookId;
@@ -67,5 +69,39 @@ public class Cart {
 
     public void setLanguageId(Integer languageId) {
         this.languageId = languageId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cart cart = (Cart) o;
+
+        return Objects.equals(bookId, cart.bookId) &&
+                Objects.equals(title, cart.title) &&
+                Objects.equals(price, cart.price) &&
+                Objects.equals(quantity, cart.quantity) &&
+                Objects.equals(userId, cart.userId) &&
+                Objects.equals(totalPrice, cart.totalPrice) &&
+                Objects.equals(languageId, cart.languageId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId, title, price, quantity, userId, totalPrice, languageId);
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", userId=" + userId +
+                ", totalPrice=" + totalPrice +
+                ", languageId=" + languageId +
+                '}';
     }
 }

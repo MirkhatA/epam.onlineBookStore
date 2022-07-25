@@ -1,6 +1,7 @@
 package com.epam.bookstore.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Order {
 
@@ -123,6 +124,33 @@ public class Order {
 
     public void setPaymentWay(String paymentWay) {
         this.paymentWay = paymentWay;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        return Objects.equals(id, order.id) &&
+                Objects.equals(userId, order.userId) &&
+                Objects.equals(fullName, order.fullName) &&
+                Objects.equals(totalPrice, order.totalPrice) &&
+                Objects.equals(address, order.address) &&
+                Objects.equals(createdAt, order.createdAt) &&
+                Objects.equals(statusId, order.statusId) &&
+                Objects.equals(status, order.status) &&
+                Objects.equals(isPaidId, order.isPaidId) &&
+                Objects.equals(isPaid, order.isPaid) &&
+                Objects.equals(mobile, order.mobile) &&
+                Objects.equals(comment, order.comment) &&
+                Objects.equals(paymentWay, order.paymentWay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, fullName, totalPrice, address, createdAt, statusId, status, isPaidId, isPaid, mobile, comment, paymentWay);
     }
 
     @Override

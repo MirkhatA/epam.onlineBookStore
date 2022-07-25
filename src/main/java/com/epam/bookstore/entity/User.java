@@ -1,6 +1,7 @@
 package com.epam.bookstore.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class User {
 
@@ -105,6 +106,31 @@ public class User {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(mobile, user.mobile) &&
+                Objects.equals(registeredAt, user.registeredAt) &&
+                Objects.equals(status, user.status) &&
+                Objects.equals(roleId, user.roleId) &&
+                Objects.equals(roleName, user.roleName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, address, mobile, registeredAt, status, roleId, roleName);
     }
 
     @Override
