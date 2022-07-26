@@ -39,16 +39,20 @@ public class LoginService implements Service {
             session.setAttribute(MOBILE, user.getMobile());
             session.setAttribute(REGISTERED_DATE, user.getRegisteredAt());
             session.setAttribute(ROLE_ID, user.getRoleId());
+            session.setAttribute(STATUS, user.getStatus());
 
-            if (user.getRoleId() == 2) {
-                session.setAttribute(IS_ADMIN, true);
-                dispatcher = req.getRequestDispatcher(mainJsp);
-                dispatcher.forward(req, res);
-            } else {
-                session.setAttribute(IS_ADMIN, false);
-                dispatcher = req.getRequestDispatcher(mainJsp);
+            if (user.getStatus().equals(INACTIVE)) {
+                session.setAttribute(IS_BLOCKED, true);
+                dispatcher = req.getRequestDispatcher(loginJsp);
                 dispatcher.forward(req, res);
             }
+            if (user.getRoleId() == 2) {
+                session.setAttribute(IS_ADMIN, true);
+            } else {
+                session.setAttribute(IS_ADMIN, false);
+            }
+            dispatcher = req.getRequestDispatcher(mainJsp);
+            dispatcher.forward(req, res);
         } else {
             req.setAttribute(WRONG_DATA, WRONG_LOGIN_OR_PASS_MSG);
             dispatcher = req.getRequestDispatcher(loginJsp);

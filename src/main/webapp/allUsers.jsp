@@ -10,13 +10,13 @@
 <main class="d-flex flex-nowrap">
     <jsp:include page="adminProfileNavbar.jsp"/>
 
-    <c:if test="${requestScope.hasOrders}">
-        <div class="alert alert-danger" role="alert">
-            <p>You cant delete this user because he has orders</p>
-        </div>
-    </c:if>
-
     <div class="col-md-7 ms-5 mt-5">
+        <c:if test="${sessionScope.hasOrders}">
+            <div class="alert alert-danger" role="alert">
+                <p>You can't delete this user because he has orders</p>
+            </div>
+        </c:if>
+
         <table class="table table-hover">
             <tr>
                 <th>id</th>
@@ -40,6 +40,12 @@
                     <td>${user.mobile}</td>
                     <td>${user.registeredAt}</td>
                     <td>${user.status}</td>
+                    <c:if test="${user.status == 'Active'}">
+                    <th><a href="/blockUser?id=${user.id}" class="btn btn-danger">Block</a></th>
+                    </c:if>
+                    <c:if test="${user.status == 'Inactive'}">
+                        <th><a href="/unblockUser?id=${user.id}" class="btn btn-success">Unblock</a></th>
+                    </c:if>
                     <th><a href="/deleteUser?id=${user.id}" class="btn btn-danger">Delete</a></th>
                 </tr>
             </c:forEach>

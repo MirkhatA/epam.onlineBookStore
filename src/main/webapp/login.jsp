@@ -19,10 +19,14 @@
                      <fmt:message key="success.registered"/>
                 </div>
             </c:if>
-
             <c:if test="${requestScope.wrongData != null}">
                 <div class="alert alert-danger" role="alert">
                     <fmt:message key="alert.wrongLoginOrPassword"/>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.isBlocked}">
+                <div class="alert alert-danger" role="alert">
+                    <fmt:message key="alert.userIsNotActive"/>
                 </div>
             </c:if>
 

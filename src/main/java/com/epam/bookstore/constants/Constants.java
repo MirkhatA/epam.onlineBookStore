@@ -25,6 +25,7 @@ public class Constants {
     public static final String COMMENT = "comment";
     public static final String PAYMENT_WAY = "paymentWay";
     public static final String FULL_NAME = "fullName";
+    public static final String STATUS = "status";
 
     public static final String BOOK = "book";
 
@@ -34,6 +35,7 @@ public class Constants {
     public static final String IS_ADMIN = "isAdmin";
     public static final String IS_PAID = "isPaid";
     public static final String HAS_ORDERS = "hasOrders";
+    public static final String IS_BLOCKED = "isBlocked";
 
     public static final String CART_LIST = "cartList";
     public static final String USER_LIST = "userList";
@@ -64,4 +66,5 @@ public class Constants {
 
     public static final String EN = "en";
     public static final String RU = "ru";
+    public static final String INACTIVE = "Inactive";
 }

@@ -23,6 +23,8 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_ALL_USERS = "SELECT * FROM users WHERE role_id=1";
     private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id=?";
     private static final String COUNT_TOTAL_ORDERS = "SELECT COUNT(*) AS total FROM `order` WHERE user_id=?;";
+    private static final String BLOCK_USER_BY_ID = "UPDATE users SET status='Inactive' WHERE id=?;";
+    private static final String UNBLOCK_USER_BY_ID = "UPDATE users SET status='Active' WHERE id=?;";
 
     private ConnectionPool connectionPool;
     private Connection connection;
@@ -85,6 +87,32 @@ public class UserDaoImpl implements UserDao {
             ps.setString(5, user.getMobile());
             ps.setLong(6, id);
 
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+    }
+
+    @Override
+    public void blockUser(Long id) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(BLOCK_USER_BY_ID)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+    }
+
+    @Override
+    public void unblockUser(Long id) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(UNBLOCK_USER_BY_ID)) {
+            ps.setLong(1, id);
             ps.executeUpdate();
         } finally {
             connectionPool.returnConnection(connection);

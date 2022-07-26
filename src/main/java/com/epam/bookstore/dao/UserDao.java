@@ -27,4 +27,8 @@ public interface UserDao {
 
     void update(Long id, User user) throws SQLException;
 
+    void blockUser(Long id) throws SQLException;
+
+    void unblockUser(Long id) throws SQLException;
+
 }

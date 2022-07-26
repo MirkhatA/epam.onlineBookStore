@@ -2,7 +2,6 @@ package com.epam.bookstore.service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import static com.epam.bookstore.service.ServiceUrl.*;
 
@@ -36,6 +35,8 @@ public class FactoryService {
         serviceMap.put(deleteUserService, new AdminDeleteUserService());
         serviceMap.put(allOrdersService, new AllOrdersService());
         serviceMap.put(editOrderService, new EditOrderService());
+        serviceMap.put(blockUserService, new AdminBlockUserService());
+        serviceMap.put(unblockUserService, new AdminUnblockUserService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

@@ -15,9 +15,11 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.*;
+import static com.epam.bookstore.constants.Constants.USER_LIST;
+import static com.epam.bookstore.constants.PageNameConstants.allUsersJsp;
+import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
 
-public class AdminDeleteUserService implements Service {
+public class AdminUnblockUserService implements Service {
     UserDao userDao = new UserDaoImpl();
 
     @Override
@@ -31,18 +33,11 @@ public class AdminDeleteUserService implements Service {
         Long id = Long.valueOf(req.getParameter(ID));
 
         if (isAdmin != null && isAdmin.equals(true)) {
-            if (userDao.getOrdersNumber(id) > 0) {
-                session.setAttribute(HAS_ORDERS, true);
-                dispatcher = req.getRequestDispatcher(allUsersJsp);
-                dispatcher.forward(req, res);
-            } else {
-                userDao.deleteUser(id);
-
-                List<User> userList = userDao.getAll(languageId);
-                session.setAttribute(USER_LIST, userList);
-                dispatcher = req.getRequestDispatcher(allUsersJsp);
-                dispatcher.forward(req, res);
-            }
+            userDao.unblockUser(id);
+            List<User> userList = userDao.getAll(languageId);
+            session.setAttribute(USER_LIST, userList);
+            dispatcher = req.getRequestDispatcher(allUsersJsp);
+            dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(errorJsp);
             dispatcher.forward(req, res);

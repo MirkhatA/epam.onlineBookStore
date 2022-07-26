@@ -28,6 +28,8 @@ public class ServiceUrl {
     static final String adminAllBooksService = "/allBooks";
     static final String adminAllUsersService = "/allUsers";
     static final String deleteUserService = "/deleteUser";
+    static final String blockUserService = "/blockUser";
+    static final String unblockUserService = "/unblockUser";
     static final String allOrdersService = "/allOrders";
     static final String editOrderService = "/editOrder";
 }
