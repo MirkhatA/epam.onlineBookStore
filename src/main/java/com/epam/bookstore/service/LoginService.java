@@ -3,6 +3,7 @@ package com.epam.bookstore.service;
 import com.epam.bookstore.dao.UserDao;
 import com.epam.bookstore.dao.daoImpl.UserDaoImpl;
 import com.epam.bookstore.entity.User;
+import com.epam.bookstore.validator.UserValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +15,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.MessageConstants.*;
-import static com.epam.bookstore.constants.PageNameConstants.*;
+import static com.epam.bookstore.constants.MessageConstants.WRONG_LOGIN_OR_PASS_MSG;
+import static com.epam.bookstore.constants.PageNameConstants.loginJsp;
+import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
 
 public class LoginService implements Service {
     UserDao userDao = new UserDaoImpl();
@@ -45,14 +47,15 @@ public class LoginService implements Service {
                 session.setAttribute(IS_BLOCKED, true);
                 dispatcher = req.getRequestDispatcher(loginJsp);
                 dispatcher.forward(req, res);
-            }
-            if (user.getRoleId() == 2) {
+            } else if (UserValidator.isAdmin(user.getRoleId())) {
                 session.setAttribute(IS_ADMIN, true);
+                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher.forward(req, res);
             } else {
                 session.setAttribute(IS_ADMIN, false);
+                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher.forward(req, res);
             }
-            dispatcher = req.getRequestDispatcher(mainJsp);
-            dispatcher.forward(req, res);
         } else {
             req.setAttribute(WRONG_DATA, WRONG_LOGIN_OR_PASS_MSG);
             dispatcher = req.getRequestDispatcher(loginJsp);

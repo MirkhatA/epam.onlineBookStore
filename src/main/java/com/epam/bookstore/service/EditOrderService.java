@@ -21,10 +21,6 @@ public class EditOrderService implements Service {
         Long paidStatus = Long.valueOf(req.getParameter(IS_PAID));
         Long orderStatus = Long.valueOf(req.getParameter(ORDER_STATUS));
 
-        System.out.println(paidStatus);
-        System.out.println(orderStatus);
-        System.out.println(orderId);
-
         orderDao.updateStatus(paidStatus, orderStatus, orderId);
     }
 }
