@@ -4,6 +4,7 @@ import com.epam.bookstore.dao.UserDao;
 import com.epam.bookstore.dao.daoImpl.UserDaoImpl;
 import com.epam.bookstore.entity.User;
 import com.epam.bookstore.validator.UserValidator;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class LoginService implements Service {
         HttpSession session = req.getSession();
 
         String login = req.getParameter(LOGIN);
-        String password = req.getParameter(PASSWORD);
+        String password = DigestUtils.md5Hex(req.getParameter(PASSWORD));
 
         User user = userDao.getUserByLoginAndPassword(login, password);
 

@@ -3,6 +3,7 @@ package com.epam.bookstore.service;
 import com.epam.bookstore.dao.UserDao;
 import com.epam.bookstore.dao.daoImpl.UserDaoImpl;
 import com.epam.bookstore.entity.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,6 +58,7 @@ public class RegistrationService implements Service{
         user.setMobile(req.getParameter(MOBILE));
         user.setEmail(req.getParameter(EMAIL));
         user.setAddress(req.getParameter(ADDRESS));
-        user.setPassword(req.getParameter(PASSWORD));
+        String password = DigestUtils.md5Hex(req.getParameter(PASSWORD));
+        user.setPassword(password);
     }
 }
