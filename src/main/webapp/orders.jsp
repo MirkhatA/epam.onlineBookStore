@@ -30,7 +30,7 @@
                     <th><fmt:message key="label.orderStatus"/></th>
                 </tr>
 
-                <c:forEach var="order" items="${sessionScope.orders}">
+                <c:forEach var="order" items="${sessionScope.orderList}">
                 <tr>
                     <td>${order.id}</td>
                     <td>${order.fullName}</td>

@@ -2,6 +2,7 @@ package com.epam.bookstore.service;
 
 import com.epam.bookstore.dao.UserDao;
 import com.epam.bookstore.dao.daoImpl.UserDaoImpl;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +26,9 @@ public class EditPasswordService implements Service {
         HttpSession session = req.getSession();
         Long userId = (Long) session.getAttribute(USER_ID);
 
-        if (!req.getParameter(NEW_PASSWORD).equals(req.getParameter(PASSWORD_REPEAT))) {
+        String oldPassword = userDao.getUserPassword(userId);
+
+        if (!req.getParameter(OLD_PASSWORD).equals(req.getParameter(PASSWORD_REPEAT))) {
             req.setAttribute(PASSWORDS_ARE_DIFFERENT, SAME_PASSWORDS_MSG);
             dispatcher = req.getRequestDispatcher(changePasswordJsp);
             dispatcher.forward(req, res);
@@ -34,12 +37,13 @@ public class EditPasswordService implements Service {
             req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
             dispatcher = req.getRequestDispatcher(changePasswordJsp);
             dispatcher.forward(req, res);
-        } else if (!userDao.getUserPassword(userId).equals(req.getParameter(OLD_PASSWORD))) {
+        } else if (!oldPassword.equals(DigestUtils.md5Hex(req.getParameter(OLD_PASSWORD)))) {
             req.setAttribute(OLD_PASSWORD_IS_INCORRECT, OLD_PASSWORD_INCORRECT_MSG);
             dispatcher = req.getRequestDispatcher(changePasswordJsp);
             dispatcher.forward(req, res);
         } else {
-            userDao.updatePassword(userId, req.getParameter(NEW_PASSWORD));
+            String newPassword = DigestUtils.md5Hex(req.getParameter(NEW_PASSWORD));
+            userDao.updatePassword(userId, newPassword);
             req.setAttribute(EDIT_PASSWORD_SUCCESS, PASSWORD_UPDATED_SUCCESS_MSG);
             dispatcher = req.getRequestDispatcher(changePasswordJsp);
             dispatcher.forward(req, res);
