@@ -45,15 +45,15 @@
                         <td>
                             <select class="form-select" name="isPaid" id="isPaid">
                                 <option value="${order.isPaidId}">${order.isPaid}</option>
-                                <c:forEach var="paidStatus" items="${sessionScope.paidStatuses}">
+                                <c:forEach var="paidStatus" items="${sessionScope.paidStatusList}">
                                     <option value="${paidStatus.id}">${paidStatus.name}</option>
                                 </c:forEach>
                             </select>
                         </td>
                         <td>
                             <select class="form-select" name="orderStatus" id="orderStatus">
-                                <option value="${orderStatus.statusId}">${order.status}</option>
-                                <c:forEach var="orderStatus" items="${sessionScope.orderStatuses}">
+                                <option value="${order.statusId}">${order.status}</option>
+                                <c:forEach var="orderStatus" items="${sessionScope.orderStatusList}">
                                     <option value="${orderStatus.id}">${orderStatus.name}</option>
                                 </c:forEach>
                             </select>

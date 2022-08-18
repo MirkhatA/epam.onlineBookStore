@@ -21,7 +21,7 @@ public class OrderDaoImpl implements OrderDao {
             "created_at, os.name as order_status, ps.name as paid_status, mobile, comment, payment_way " +
             "FROM `order` o JOIN order_status os on o.status_id = os.id JOIN paid_status ps on ps.id = o.paid_id " +
             "WHERE os.language_id=? AND ps.language_id=?";
-    private static final String UPDATE_ORDER_STATUS = "UPDATE `order` SET `paid_id`='?', `status_id`='?' WHERE (`id`='?');";
+    private static final String UPDATE_ORDER_STATUS = "UPDATE `order` SET `paid_id`=?, `status_id`=? WHERE (`id`=?);";
 
     ConnectionPool connectionPool;
     Connection connection;
@@ -106,7 +106,7 @@ public class OrderDaoImpl implements OrderDao {
             ps.setLong(1, paidStatus);
             ps.setLong(2, orderStatus);
             ps.setLong(3, orderId);
-            System.out.println(ps);
+            ps.executeUpdate();
         } finally {
             connectionPool.returnConnection(connection);
         }
