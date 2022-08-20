@@ -30,7 +30,11 @@
                 <tr>
                     <td>${book.id}</td>
                     <td>${book.title}</td>
-                    <td>${book.description}</td>
+                    <td>
+                        <p class="book-description">
+                                ${book.description}
+                        </p>
+                    </td>
                     <td>${book.authorName}</td>
                     <td>${book.genre}</td>
                     <td>${book.quantity}</td>
