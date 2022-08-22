@@ -37,6 +37,7 @@ public class FactoryService {
         serviceMap.put(editOrderService, new EditOrderService());
         serviceMap.put(blockUserService, new AdminBlockUserService());
         serviceMap.put(unblockUserService, new AdminUnblockUserService());
+        serviceMap.put(addBookService, new AddBookService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

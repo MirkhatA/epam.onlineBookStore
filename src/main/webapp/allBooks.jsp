@@ -12,8 +12,6 @@
 
     <div class="col-md-7 ms-5 mt-5">
         <table class="table table-hover">
-
-
             <tr>
                 <th>id</th>
                 <th><fmt:message key="label.bookTitle"/></th>

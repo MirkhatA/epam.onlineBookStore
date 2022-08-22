@@ -32,4 +32,5 @@ public class ServiceUrl {
     static final String unblockUserService = "/unblockUser";
     static final String allOrdersService = "/allOrders";
     static final String editOrderService = "/editOrder";
+    static final String addBookService = "/addBook";
 }

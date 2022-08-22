@@ -66,5 +66,7 @@ public class Constants {
 
     public static final String EN = "en";
     public static final String RU = "ru";
+    public static final Integer ENGLISH_LANGUAGE_ID = 0;
+    public static final Integer RUSSIAN_LANGUAGE_ID = 1;
     public static final String INACTIVE = "Inactive";
 }

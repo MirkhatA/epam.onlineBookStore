@@ -13,4 +13,8 @@ public interface BookDao {
     List<Book> getAll(int languageId) throws SQLException;
 
     Book getById(Long id, int languageId) throws SQLException;
+
+    void create(List<Book> bookParams) throws SQLException;
+
+    Long getLastId() throws SQLException;
 }

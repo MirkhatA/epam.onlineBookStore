@@ -4,12 +4,12 @@ import com.epam.bookstore.connection.ConnectionPool;
 import com.epam.bookstore.dao.BookDao;
 import com.epam.bookstore.entity.Book;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.epam.bookstore.constants.Constants.ENGLISH_LANGUAGE_ID;
+import static com.epam.bookstore.constants.Constants.RUSSIAN_LANGUAGE_ID;
 
 public class BookDaoImpl implements BookDao {
     private static final String GET_ALL_BOOKS_BY_LANG_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, " +
@@ -28,6 +28,8 @@ public class BookDaoImpl implements BookDao {
             "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
             "ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.author_id=?;";
+    private static final String ADD_BOOK = "INSERT INTO books VALUE (?, ?, ?, ?, ?, ?, ?, ?, 1, ?), (?, ?, ?, ?, ?, ?, ?, ?, 2, ?);";
+    private static final String GET_LAST_ID = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
 
     ConnectionPool connectionPool;
     Connection connection;
@@ -77,6 +79,62 @@ public class BookDaoImpl implements BookDao {
         }
 
         return book;
+    }
+
+    @Override
+    public void create(List<Book> bookParams) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        Book bookEng = bookParams.get(ENGLISH_LANGUAGE_ID);
+        Book bookRu = bookParams.get(RUSSIAN_LANGUAGE_ID);
+
+        // get next id of last book
+        Long lastId = getLastId() + 1;
+
+        try (PreparedStatement ps = connection.prepareStatement(ADD_BOOK)){
+            ps.setLong(1, lastId);
+            ps.setString(2, bookEng.getTitle());
+            ps.setString(3, bookEng.getDescription());
+            ps.setString(4, bookEng.getImage());
+            ps.setInt(5, bookEng.getQuantity());
+            ps.setDouble(6, bookEng.getPrice());
+            ps.setLong(7, bookEng.getAuthorId());
+            ps.setLong(8, 1L);
+            ps.setLong(9, bookEng.getGenreId());
+
+            ps.setLong(10, lastId);
+            ps.setString(11, bookRu.getTitle());
+            ps.setString(12, bookRu.getDescription());
+            ps.setString(13, bookRu.getImage());
+            ps.setInt(14, bookRu.getQuantity());
+            ps.setDouble(15, bookRu.getPrice());
+            ps.setLong(16, bookRu.getAuthorId());
+            ps.setLong(17, 1L);
+            ps.setLong(18, bookRu.getGenreId());
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+    }
+
+    @Override
+    public Long getLastId() throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        Long lastId = 0L;
+
+        try (PreparedStatement ps = connection.prepareStatement(GET_LAST_ID)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lastId = rs.getLong("id");
+            }
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+
+        return lastId;
     }
 
     @Override
