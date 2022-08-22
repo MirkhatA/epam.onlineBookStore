@@ -8,44 +8,53 @@
 <jsp:include page="header.jsp"/>
 
 <main class="d-flex flex-nowrap">
-    <jsp:include page="adminProfileNavbar.jsp"/>
+    <c:choose>
+        <c:when test="${empty sessionScope.userId}">
+            <div class="alert alert-danger ms-5" role="alert">
+                <fmt:message key="alert.forbidden"/>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="adminProfileNavbar.jsp"/>
 
-    <div class="col-md-7 ms-5 mt-5">
-        <table class="table table-hover">
-            <tr>
-                <th>id</th>
-                <th><fmt:message key="label.bookTitle"/></th>
-                <th>Description</th>
-                <th>Author</th>
-                <th>Genre</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Publisher</th>
-                <th></th>
-            </tr>
+            <div class="col-md-7 ms-5 mt-5">
+                <table class="table table-hover">
+                    <tr>
+                        <th>id</th>
+                        <th><fmt:message key="label.bookTitle"/></th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Publisher</th>
+                        <th></th>
+                    </tr>
 
-            <c:forEach var="book" items="${sessionScope.bookList}">
-                <tr>
-                    <td>${book.id}</td>
-                    <td>${book.title}</td>
-                    <td>
-                        <p class="book-description">
-                                ${book.description}
-                        </p>
-                    </td>
-                    <td>${book.authorName}</td>
-                    <td>${book.genre}</td>
-                    <td>${book.quantity}</td>
-                    <td>${book.price}</td>
-                    <td>${book.publisherName}</td>
-                    <td>
-                        <a href="" type="button" class="btn btn-warning mb-1">Edit</a>
-                        <a href="" type="button" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+                    <c:forEach var="book" items="${sessionScope.bookList}">
+                        <tr>
+                            <td>${book.id}</td>
+                            <td>${book.title}</td>
+                            <td>
+                                <p class="book-description">
+                                        ${book.description}
+                                </p>
+                            </td>
+                            <td>${book.authorName}</td>
+                            <td>${book.genre}</td>
+                            <td>${book.quantity}</td>
+                            <td>${book.price}</td>
+                            <td>${book.publisherName}</td>
+                            <td>
+                                <a href="" type="button" class="btn btn-warning mb-1">Edit</a>
+                                <a href="" type="button" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </main>
 
 <jsp:include page="footer.jsp"/>

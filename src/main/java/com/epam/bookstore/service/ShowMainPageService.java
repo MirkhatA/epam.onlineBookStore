@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.FORBIDDEN_USER_MSG;
 import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
 
 public class ShowMainPageService implements Service{

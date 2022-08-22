@@ -36,6 +36,7 @@ public class Constants {
     public static final String IS_PAID = "isPaid";
     public static final String HAS_ORDERS = "hasOrders";
     public static final String IS_BLOCKED = "isBlocked";
+    public static final String FORBIDDEN_USER = "forbiddenUser";
 
     public static final String CART_LIST = "cartList";
     public static final String USER_LIST = "userList";

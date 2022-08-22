@@ -6,6 +6,7 @@ public class MessageConstants {
     public static final String PLEASE_LOGIN_MSG = "alert.pleaseLogin";
     public static final String SAME_PASSWORDS_MSG = "alert.samePasswords";
     public static final String FILL_ALL_DATA_MSG = "alert.fillAllData";
+    public static final String FORBIDDEN_USER_MSG = "alert.forbiddenUser";
     public static final String OLD_PASSWORD_INCORRECT_MSG = "alert.oldPasswordIncorrect";
     public static final String PASSWORD_UPDATED_SUCCESS_MSG = "success.editPassword";
     public static final String EMAIL_IS_TAKEN_MSG = "alert.emailIsTaken";

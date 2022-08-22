@@ -15,6 +15,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.bookstore.constants.Constants.IS_ADMIN;
+import static com.epam.bookstore.constants.Constants.LANGUAGE_ID;
+import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+
 public class AddBookService implements Service {
     BookDao bookDao = new BookDaoImpl();
 
@@ -23,21 +27,28 @@ public class AddBookService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        List<Book> bookParams = new ArrayList<>();
+        Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
 
-        Book bookEng = new Book();
-        setBookData(bookEng, req);
-        bookEng.setTitle("bookTitleEn");
-        bookEng.setDescription("bookDescriptionEn");
-        bookParams.add(bookEng);
+        if (isAdmin != null && isAdmin.equals(true)) {
+            List<Book> bookParams = new ArrayList<>();
 
-        Book bookRus = new Book();
-        setBookData(bookRus, req);
-        bookRus.setTitle("bookTitleRu");
-        bookRus.setDescription("bookDescriptionRu");
-        bookParams.add(bookRus);
+            Book bookEng = new Book();
+            setBookData(bookEng, req);
+            bookEng.setTitle("bookTitleEn");
+            bookEng.setDescription("bookDescriptionEn");
+            bookParams.add(bookEng);
 
-        bookDao.create(bookParams);
+            Book bookRus = new Book();
+            setBookData(bookRus, req);
+            bookRus.setTitle("bookTitleRu");
+            bookRus.setDescription("bookDescriptionRu");
+            bookParams.add(bookRus);
+
+            bookDao.create(bookParams);
+        } else {
+            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher.forward(req, res);
+        }
     }
 
     public static void setBookData(Book book, HttpServletRequest req) {
