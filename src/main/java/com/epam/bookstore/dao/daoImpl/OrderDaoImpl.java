@@ -20,7 +20,7 @@ public class OrderDaoImpl implements OrderDao {
     private static final String GET_ALL_ORDERS = "SELECT o.id, user_id, status_id, paid_id, receiver_name, total, address, " +
             "created_at, os.name as order_status, ps.name as paid_status, mobile, comment, payment_way " +
             "FROM `order` o JOIN order_status os on o.status_id = os.id JOIN paid_status ps on ps.id = o.paid_id " +
-            "WHERE os.language_id=? AND ps.language_id=?";
+            "WHERE os.language_id=? AND ps.language_id=? ORDER BY id;";
     private static final String UPDATE_ORDER_STATUS = "UPDATE `order` SET `paid_id`=?, `status_id`=? WHERE (`id`=?);";
 
     ConnectionPool connectionPool;

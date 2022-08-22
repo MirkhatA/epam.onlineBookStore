@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.MessageConstants.*;
@@ -29,11 +30,12 @@ public class SubmitOrderService implements Service {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
-        Long user_id = (Long) session.getAttribute(USER_ID);
+        Long userId = (Long) session.getAttribute(USER_ID);
+        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         Order order = new Order();
 
-        order.setUserId(user_id);
+        order.setUserId(userId);
         order.setFullName((String) session.getAttribute(RECEIVER_NAME));
         order.setAddress((String) session.getAttribute(RECEIVER_ADDRESS));
         order.setMobile((String) session.getAttribute(RECEIVER_MOBILE));
@@ -41,8 +43,11 @@ public class SubmitOrderService implements Service {
         order.setPaymentWay((String) session.getAttribute(PAYMENT_WAY));
         order.setTotalPrice((Double) session.getAttribute(TOTAL_PRICE));
         orderDao.create(order);
-        cartDao.deleteAllFromCart(user_id);
+        cartDao.deleteAllFromCart(userId);
 
+        List<Order> orderList = orderDao.getAllByUserId(userId, languageId);
+
+        session.setAttribute(ORDER_LIST, orderList);
         req.setAttribute(ORDER_CREATED, ORDER_CREATED_MSG);
         dispatcher = req.getRequestDispatcher(ordersJsp);
         dispatcher.forward(req, res);
