@@ -83,9 +83,9 @@
                 <label for="publisher" class="col-md-2 col-form-label"><fmt:message key="label.publisher"/></label>
                 <div class="col-sm-10">
                     <select class="form-select" name="publisher" id="publisher">
-<%--                        <c:forEach var="publisher" items="${sessionScope.genreList}">--%>
-<%--                            <option value="${genre.id}">${genre.name}</option>--%>
-<%--                        </c:forEach>--%>
+                        <c:forEach var="publisher" items="${sessionScope.publisherList}">
+                            <option value="${publisher.id}">${publisher.name}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>

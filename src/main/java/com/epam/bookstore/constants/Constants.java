@@ -44,6 +44,7 @@ public class Constants {
     public static final String BOOK_LIST = "bookList";
     public static final String GENRE_LIST = "genreList";
     public static final String AUTHOR_LIST = "authorList";
+    public static final String PUBLISHER_LIST = "publisherList";
 
     public static final String TOTAL_PRICE = "totalPrice";
     public static final String ORDER_STATUS = "orderStatus";

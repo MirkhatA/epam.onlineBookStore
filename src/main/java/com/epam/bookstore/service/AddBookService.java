@@ -46,7 +46,7 @@ public class AddBookService implements Service {
         book.setQuantity(Integer.valueOf(req.getParameter("bookQuantity")));
         book.setPrice(Double.valueOf(req.getParameter("bookPrice")));
         book.setAuthorId(Long.valueOf(req.getParameter("author")));
-//        book.setPublisherId(1L);
+        book.setPublisherId(Long.valueOf(req.getParameter("publisher")));
         book.setGenreId(Long.valueOf(req.getParameter("genre")));
     }
 }

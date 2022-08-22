@@ -3,12 +3,15 @@ package com.epam.bookstore.service;
 import com.epam.bookstore.dao.AuthorDao;
 import com.epam.bookstore.dao.BookDao;
 import com.epam.bookstore.dao.GenreDao;
+import com.epam.bookstore.dao.PublisherDao;
 import com.epam.bookstore.dao.daoImpl.AuthorDaoImpl;
 import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
 import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
+import com.epam.bookstore.dao.daoImpl.PublisherDaoImpl;
 import com.epam.bookstore.entity.Author;
 import com.epam.bookstore.entity.Book;
 import com.epam.bookstore.entity.Genre;
+import com.epam.bookstore.entity.Publisher;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +31,8 @@ public class ShowMainPageService implements Service{
     private GenreDao genreDao = new GenreDaoImpl();
     private AuthorDao authorDao = new AuthorDaoImpl();
 
+    private PublisherDao publisherDao = new PublisherDaoImpl();
+
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
@@ -37,10 +42,12 @@ public class ShowMainPageService implements Service{
         List<Genre> genreList = genreDao.getAll(languageId);
         List<Book> bookList = bookDao.getAll(languageId);
         List<Author> authorList = authorDao.getAll(languageId);
+        List<Publisher> publisherList = publisherDao.getAll();
 
         session.setAttribute(GENRE_LIST, genreList);
         session.setAttribute(BOOK_LIST, bookList);
         session.setAttribute(AUTHOR_LIST, authorList);
+        session.setAttribute(PUBLISHER_LIST, publisherList);
 
         dispatcher = req.getRequestDispatcher(mainJsp);
         dispatcher.forward(req, res);

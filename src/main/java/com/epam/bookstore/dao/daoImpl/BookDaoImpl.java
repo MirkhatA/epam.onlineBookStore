@@ -100,7 +100,7 @@ public class BookDaoImpl implements BookDao {
             ps.setInt(5, bookEng.getQuantity());
             ps.setDouble(6, bookEng.getPrice());
             ps.setLong(7, bookEng.getAuthorId());
-            ps.setLong(8, 1L);
+            ps.setLong(8, bookEng.getPublisherId());
             ps.setLong(9, bookEng.getGenreId());
 
             ps.setLong(10, lastId);
@@ -110,7 +110,7 @@ public class BookDaoImpl implements BookDao {
             ps.setInt(14, bookRu.getQuantity());
             ps.setDouble(15, bookRu.getPrice());
             ps.setLong(16, bookRu.getAuthorId());
-            ps.setLong(17, 1L);
+            ps.setLong(17, bookRu.getPublisherId());
             ps.setLong(18, bookRu.getGenreId());
             ps.executeUpdate();
         } finally {
