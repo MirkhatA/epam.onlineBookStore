@@ -73,7 +73,7 @@
                     <div class="mb-2 row">
                         <label for="mobile" class="col-md-2 col-form-label"><fmt:message key="label.mobile"/></label>
                         <div class="col-sm-10">
-                            <input name="mobile" type="text" class="form-control" id="mobile" value="${sessionScope.mobile}">
+                            <input name="mobile" type="tel" class="form-control tel" id="mobile" value="${sessionScope.mobile}">
                         </div>
                     </div>
 

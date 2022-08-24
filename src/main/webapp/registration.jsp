@@ -35,27 +35,26 @@
 
             <div class="form-floating mb-1">
                 <input name="firstName" type="text" class="form-control" id="nameInput"
-                       placeholder="<fmt:message key="input.name"/>">
+                       placeholder="<fmt:message key="input.name"/>" autocomplete="off">
                 <label for="nameInput"><fmt:message key="input.name"/></label>
             </div>
             <div class="form-floating mb-1">
-                <input name="mobile" type="text" class="form-control" id="phoneInput"
-                       placeholder="<fmt:message key="input.phone"/>">
+                <input name="mobile" type="tel" class="form-control tel" id="phoneInput" autocomplete="off">
                 <label for="phoneInput"><fmt:message key="input.phone"/></label>
             </div>
             <div class="form-floating mb-1">
                 <input name="email" type="email" class="form-control" id="emailInput"
-                       placeholder="<fmt:message key="input.email"/>">
+                       placeholder="<fmt:message key="input.email"/>" autocomplete="off">
                 <label for="emailInput"><fmt:message key="input.email"/></label>
             </div>
             <div class="form-floating mb-1">
                 <input name="password" type="password" class="form-control" id="passwordInput"
-                       placeholder="<fmt:message key="input.password"/>">
+                       placeholder="<fmt:message key="input.password"/>" autocomplete="off">
                 <label for="passwordInput"><fmt:message key="input.password"/></label>
             </div>
             <div class="form-floating mb-1">
                 <input name="rePassword" type="password" class="form-control" id="rePasswordInput"
-                       placeholder="<fmt:message key="input.repeatPassword"/>">
+                       placeholder="<fmt:message key="input.repeatPassword"/>" autocomplete="off">
                 <label for="rePasswordInput"><fmt:message key="input.repeatPassword"/></label>
             </div>
 
