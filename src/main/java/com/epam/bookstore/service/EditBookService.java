@@ -63,5 +63,6 @@ public class EditBookService implements Service{
         book.setAuthorId(Long.valueOf(req.getParameter("author")));
         book.setPublisherId(Long.valueOf(req.getParameter("publisher")));
         book.setGenreId(Long.valueOf(req.getParameter("genre")));
+        book.setStatus(req.getParameter("status"));
     }
 }

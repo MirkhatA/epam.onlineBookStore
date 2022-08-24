@@ -21,5 +21,7 @@ public interface BookDao {
 
     Long getLastId() throws SQLException;
 
+    List<Book> getAllByStatus(int languageId) throws SQLException;
+
     void delete(Long id) throws SQLException;
 }

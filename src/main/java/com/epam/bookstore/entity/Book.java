@@ -17,6 +17,7 @@ public class Book {
     private Integer languageId;
     private Long genreId;
     private String genre;
+    private String status;
 
     public Book() {
     }
@@ -129,29 +130,25 @@ public class Book {
         this.publisherId = publisherId;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return quantity == book.quantity &&
-                Objects.equals(id, book.id) &&
-                Objects.equals(title, book.title) &&
-                Objects.equals(description, book.description) &&
-                Objects.equals(image, book.image) &&
-                Objects.equals(price, book.price) &&
-                Objects.equals(authorId, book.authorId) &&
-                Objects.equals(authorName, book.authorName) &&
-                Objects.equals(publisherName, book.publisherName) &&
-                Objects.equals(publisherId, book.publisherId) &&
-                Objects.equals(languageId, book.languageId) &&
-                Objects.equals(genreId, book.genreId) &&
-                Objects.equals(genre, book.genre);
+        return quantity == book.quantity && Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(description, book.description) && Objects.equals(image, book.image) && Objects.equals(price, book.price) && Objects.equals(authorId, book.authorId) && Objects.equals(authorName, book.authorName) && Objects.equals(publisherName, book.publisherName) && Objects.equals(publisherId, book.publisherId) && Objects.equals(languageId, book.languageId) && Objects.equals(genreId, book.genreId) && Objects.equals(genre, book.genre) && Objects.equals(status, book.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, image, quantity, price, authorId, authorName, publisherName, publisherId, languageId, genreId, genre);
+        return Objects.hash(id, title, description, image, quantity, price, authorId, authorName, publisherName, publisherId, languageId, genreId, genre, status);
     }
 
     @Override
@@ -166,9 +163,11 @@ public class Book {
                 ", authorId=" + authorId +
                 ", authorName='" + authorName + '\'' +
                 ", publisherName='" + publisherName + '\'' +
+                ", publisherId=" + publisherId +
                 ", languageId=" + languageId +
                 ", genreId=" + genreId +
                 ", genre='" + genre + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

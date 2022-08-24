@@ -97,8 +97,7 @@
                         </div>
                     </div>
                     <div class="mb-2 row">
-                        <label for="publisher" class="col-md-2 col-form-label"><fmt:message
-                                key="label.publisher"/></label>
+                        <label for="publisher" class="col-md-2 col-form-label"><fmt:message key="label.publisher"/></label>
                         <div class="col-sm-10">
                             <select class="form-select" name="publisher" id="publisher">
                                 <option value="${sessionScope.bookEn.genreId}">${sessionScope.bookEn.publisherName}</option>
@@ -115,6 +114,16 @@
                         </div>
                     </div>
 
+                    <div class="mb-2 row">
+                        <label for="status" class="col-md-2 col-form-label"><fmt:message key="label.status"/></label>
+                        <div class="col-sm-10">
+                            <select class="form-select" name="status" id="status">
+                                <option value="${sessionScope.bookEn.status}">${sessionScope.bookEn.status}</option>
+                                <option value="Active"><fmt:message key="status.active"/></option>
+                                <option value="Inactive"><fmt:message key="status.inActive"/></option>
+                            </select>
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn btn-primary"><fmt:message key="button.edit"/></button>
                 </form>

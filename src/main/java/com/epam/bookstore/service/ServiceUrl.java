@@ -36,4 +36,5 @@ public class ServiceUrl {
     static final String addBookService = "/addBook";
     static final String editBookService = "/editBook";
     static final String deleteBookService = "/deleteBook";
+    static final String adminShowAllBooksService = "/adminShowAllBooksService";
 }

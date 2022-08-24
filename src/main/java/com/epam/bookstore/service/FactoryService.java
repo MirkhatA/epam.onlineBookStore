@@ -41,6 +41,7 @@ public class FactoryService {
         serviceMap.put(editBookService, new EditBookService());
         serviceMap.put(showEditBook, new ShowBookEditDetailsService());
         serviceMap.put(deleteBookService, new DeleteBookService());
+        serviceMap.put(adminShowAllBooksService, new AdminShowAllBooksService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

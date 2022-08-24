@@ -29,6 +29,7 @@
                         <th><fmt:message key="label.quantity"/></th>
                         <th><fmt:message key="label.price"/></th>
                         <th><fmt:message key="label.publisher"/></th>
+                        <th><fmt:message key="label.status"/></th>
                         <th></th>
                     </tr>
 
@@ -46,6 +47,7 @@
                             <td>${book.quantity}</td>
                             <td>${book.price}</td>
                             <td>${book.publisherName}</td>
+                            <td>${book.status}</td>
                             <td>
                                 <a href="/showEditBook?id=${book.id}" type="button" class="btn btn-warning mb-1"><fmt:message key="button.edit"/></a>
                                 <a href="/deleteBook?id=${book.id}" type="button" class="btn btn-danger"><fmt:message key="button.delete"/></a>

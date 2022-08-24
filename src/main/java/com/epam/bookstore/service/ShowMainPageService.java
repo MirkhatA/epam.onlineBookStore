@@ -38,9 +38,9 @@ public class ShowMainPageService implements Service{
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
         Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
-
         List<Genre> genreList = genreDao.getAll(languageId);
-        List<Book> bookList = bookDao.getAll(languageId);
+
+        List<Book> bookList = bookDao.getAllByStatus(languageId);
         List<Author> authorList = authorDao.getAll(languageId);
         List<Publisher> publisherList = publisherDao.getAll();
 

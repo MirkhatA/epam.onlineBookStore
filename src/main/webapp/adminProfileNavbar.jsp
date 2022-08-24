@@ -8,7 +8,7 @@
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/allBooks" class="nav-link link-dark"><fmt:message key="button.getAllBooks"/></a>
+            <a href="/adminShowAllBooksService" class="nav-link link-dark"><fmt:message key="button.getAllBooks"/></a>
         </li>
         <li class="nav-item">
             <a href="/addBook.jsp" class="nav-link link-dark"><fmt:message key="button.addBook"/></a>

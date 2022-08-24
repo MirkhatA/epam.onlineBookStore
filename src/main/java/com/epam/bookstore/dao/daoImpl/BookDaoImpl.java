@@ -13,25 +13,29 @@ import static com.epam.bookstore.constants.Constants.ENGLISH_LANGUAGE_ID;
 import static com.epam.bookstore.constants.Constants.RUSSIAN_LANGUAGE_ID;
 
 public class BookDaoImpl implements BookDao {
-    private static final String GET_ALL_BOOKS_BY_LANG_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
-            "b.price, a.full_name as author_name, p.name as publisher_name, b.language_id, g.name as genre_name FROM books b " +
+    private static final String GET_ALL_BOOKS_BY_LANG_ID_AND_STATUS = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
+            "b.price, a.full_name as author_name, p.name as publisher_name, b.language_id, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id " +
-            "INNER JOIN genres g ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? ORDER BY b.id;";
+            "INNER JOIN genres g ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.status='Active' ORDER BY b.id;";
     private static final String GET_BOOK_BY_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
-            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name FROM books b " +
+            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
             "ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.id=?;";
     private static final String GET_ALL_BOOKS_BY_GENRE_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
-            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name FROM books b " +
+            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
             "ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.genre_id=?;";
     private static final String GET_ALL_BOOKS_BY_AUTHOR_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
-            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name FROM books b " +
+            "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
             "ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.author_id=?;";
+    private static final String GET_ALL_BOOKS = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
+            "b.price, a.full_name as author_name, p.name as publisher_name, b.language_id, g.name as genre_name, b.status FROM books b " +
+            "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id " +
+            "INNER JOIN genres g ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? ORDER BY b.id;";
     private static final String UPDATE_BOOK_BY_ID_AND_LANGUAGE_ID= "UPDATE books SET title=?, description=?, image=?, " +
-            "quantity=?, price=?, author_id=?, publisher_id=?, genre_id=? WHERE id=? AND language_id=?;";
-    private static final String ADD_BOOK = "INSERT INTO books VALUE (?, ?, ?, ?, ?, ?, ?, ?, 1, ?), (?, ?, ?, ?, ?, ?, ?, ?, 2, ?);";
+            "quantity=?, price=?, author_id=?, publisher_id=?, genre_id=?, status=? WHERE id=? AND language_id=?;";
+    private static final String ADD_BOOK = "INSERT INTO books VALUE (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, 'Inactive'), (?, ?, ?, ?, ?, ?, ?, ?, 2, ?, 'Inactive');";
     private static final String GET_LAST_ID = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
     private static final String DELETE_BOOK_BY_ID = "DELETE FROM books WHERE id=?;";
 
@@ -45,7 +49,7 @@ public class BookDaoImpl implements BookDao {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
 
-        try (PreparedStatement ps = connection.prepareStatement(GET_ALL_BOOKS_BY_LANG_ID)) {
+        try (PreparedStatement ps = connection.prepareStatement(GET_ALL_BOOKS)) {
             ps.setInt(1, languageId);
             ps.setInt(2, languageId);
             ps.setInt(3, languageId);
@@ -128,7 +132,6 @@ public class BookDaoImpl implements BookDao {
         connection = connectionPool.takeConnection();
 
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_BOOK_BY_ID_AND_LANGUAGE_ID)) {
-
             for (Book book : bookParams) {
                 ps.setString(1, book.getTitle());
                 ps.setString(2, book.getDescription());
@@ -138,8 +141,9 @@ public class BookDaoImpl implements BookDao {
                 ps.setLong(6, book.getAuthorId());
                 ps.setLong(7, book.getPublisherId());
                 ps.setLong(8, book.getGenreId());
-                ps.setLong(9, id);
-                ps.setLong(10, book.getLanguageId());
+                ps.setString(9, book.getStatus());
+                ps.setLong(10, id);
+                ps.setLong(11, book.getLanguageId());
                 ps.executeUpdate();
             }
         } finally {
@@ -164,6 +168,30 @@ public class BookDaoImpl implements BookDao {
         }
 
         return lastId;
+    }
+
+    @Override
+    public List<Book> getAllByStatus(int languageId) throws SQLException {
+        List<Book> books = new ArrayList<>();
+
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(GET_ALL_BOOKS_BY_LANG_ID_AND_STATUS)) {
+            ps.setInt(1, languageId);
+            ps.setInt(2, languageId);
+            ps.setInt(3, languageId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Book book = new Book();
+                setBookData(book, rs);
+                books.add(book);
+            }
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+
+        return books;
     }
 
     @Override
@@ -243,5 +271,6 @@ public class BookDaoImpl implements BookDao {
         book.setLanguageId(rs.getInt("language_id"));
         book.setGenreId(rs.getLong("genre_id"));
         book.setGenre(rs.getString("genre_name"));
+        book.setStatus(rs.getString("status"));
     }
 }
