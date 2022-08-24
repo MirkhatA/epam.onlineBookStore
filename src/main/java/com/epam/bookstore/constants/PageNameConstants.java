@@ -16,4 +16,5 @@ public class PageNameConstants {
     public static final String allBooksJsp = "/allBooks.jsp";
     public static final String allUsersJsp = "/allUsers.jsp";
     public static final String allOrdersJsp = "/allOrders.jsp";
+    public static final String editBookJsp = "/editBook.jsp";
 }

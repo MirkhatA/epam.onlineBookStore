@@ -8,6 +8,7 @@ public class ServiceUrl {
     static final String showBooksByGenreIdService = "/showBooksByGenreId";
     static final String showBooksByAuthorIdService = "/showBooksByAuthorId";
     static final String showAllOrdersService = "/showAllOrders";
+    static final String showEditBook = "/showEditBook";
     static final String showCartService = "/cart";
 
     static final String registrationService = "/registration";
@@ -33,4 +34,5 @@ public class ServiceUrl {
     static final String allOrdersService = "/allOrders";
     static final String editOrderService = "/editOrder";
     static final String addBookService = "/addBook";
+    static final String editBookService = "/editBook";
 }

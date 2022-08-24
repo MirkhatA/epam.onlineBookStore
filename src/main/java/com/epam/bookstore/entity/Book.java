@@ -126,7 +126,7 @@ public class Book {
     }
 
     public void setPublisherId(Long publisherId) {
-        this.publisherId = Long.valueOf(publisherId);
+        this.publisherId = publisherId;
     }
 
     @Override

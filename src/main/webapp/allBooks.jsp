@@ -46,7 +46,7 @@
                             <td>${book.price}</td>
                             <td>${book.publisherName}</td>
                             <td>
-                                <a href="" type="button" class="btn btn-warning mb-1">Edit</a>
+                                <a href="/showEditBook?id=${book.id}" type="button" class="btn btn-warning mb-1">Edit</a>
                                 <a href="" type="button" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

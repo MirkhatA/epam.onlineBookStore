@@ -28,6 +28,12 @@ public class Constants {
     public static final String STATUS = "status";
 
     public static final String BOOK = "book";
+    public static final String BOOK_EN = "bookEn";
+    public static final String BOOK_RU = "bookRu";
+    public static final String BOOK_TITLE_EN = "bookTitleEn";
+    public static final String BOOK_TITLE_RU = "bookTitleRu";
+    public static final String BOOK_DESCRIPTION_EN = "bookDescriptionEn";
+    public static final String BOOK_DESCRIPTION_RU = "bookDescriptionRu";
 
     public static final String REGISTERED_DATE = "registeredDate";
     public static final String ROLE_ID = "roleId";
@@ -59,6 +65,7 @@ public class Constants {
     public static final String OLD_PASSWORD_IS_INCORRECT = "oldPasswordIsIncorrect";
     public static final String EDIT_PASSWORD_SUCCESS = "editPasswordSuccess";
     public static final String EDIT_PROFILE_SUCCESS = "editProfileSuccess";
+    public static final String EDIT_BOOK_SUCCESS = "editBookSuccess";
     public static final String EMAIL_IS_TAKEN = "emailIsTaken";
     public static final String MOBILE_IS_TAKEN = "mobileIsTaken";
     public static final String WRONG_DATA = "wrongData";
@@ -68,7 +75,7 @@ public class Constants {
 
     public static final String EN = "en";
     public static final String RU = "ru";
-    public static final Integer ENGLISH_LANGUAGE_ID = 0;
-    public static final Integer RUSSIAN_LANGUAGE_ID = 1;
+    public static final Integer ENGLISH_LANGUAGE_ID = 1;
+    public static final Integer RUSSIAN_LANGUAGE_ID = 2;
     public static final String INACTIVE = "Inactive";
 }
