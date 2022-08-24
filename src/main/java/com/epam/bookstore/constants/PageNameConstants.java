@@ -18,4 +18,8 @@ public class PageNameConstants {
     public static final String ALL_USERS_JSP = "/allUsers.jsp";
     public static final String ALL_ORDERS_JSP = "/allOrders.jsp";
     public static final String EDIT_BOOK_JSP = "/editBook.jsp";
+    public static final String ALL_GENRES_JSP = "/allGenres.jsp";
+    public static final String ADD_GENRE_JSP = "/addGenre.jsp";
+    public static final String EDIT_GENRE_JSP = "/editGenre.jsp";
+
 }

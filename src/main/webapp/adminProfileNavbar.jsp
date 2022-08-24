@@ -19,10 +19,13 @@
         <li class="nav-item">
             <a href="/allOrders" class="nav-link link-dark"><fmt:message key="button.getAllOrders"/></a>
         </li>
-    </ul>
-
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+        <hr>
+        <li class="nav-item">
+            <a href="/allGenres" class="nav-link link-dark"><fmt:message key="button.getAllGenres"/></a>
+        </li>
+        <li class="nav-item">
+            <a href="/addGenre.jsp" class="nav-link link-dark"><fmt:message key="button.addGenre"/></a>
+        </li>
         <li>
             <a href="/logout" class="nav-link link-dark">
                 <fmt:message key="label.logout"/>

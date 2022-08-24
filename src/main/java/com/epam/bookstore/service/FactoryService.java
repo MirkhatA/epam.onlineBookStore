@@ -40,9 +40,14 @@ public class FactoryService {
         serviceMap.put(addBookService, new AddBookService());
         serviceMap.put(editBookService, new EditBookService());
         serviceMap.put(showEditBook, new ShowBookEditDetailsService());
+        serviceMap.put(showEditGenre, new ShowGenreEditDetailsService());
         serviceMap.put(deleteBookService, new DeleteBookService());
         serviceMap.put(adminShowAllBooksService, new AdminShowAllBooksService());
         serviceMap.put(searchBookService, new SearchBookService());
+        serviceMap.put(adminAllGenresService, new AdminAllGenresService());
+        serviceMap.put(adminAddGenreService, new AdminAddGenreService());
+        serviceMap.put(adminDeleteGenreService, new AdminDeleteGenreService());
+        serviceMap.put(adminEditGenreService, new AdminEditGenreService());
     }
 
     public static FactoryService getInstance() { return factoryService; }

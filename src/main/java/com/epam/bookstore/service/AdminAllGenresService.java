@@ -1,8 +1,8 @@
 package com.epam.bookstore.service;
 
-import com.epam.bookstore.dao.BookDao;
-import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
-import com.epam.bookstore.entity.Book;
+import com.epam.bookstore.dao.GenreDao;
+import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
+import com.epam.bookstore.entity.Genre;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ import java.util.List;
 import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
-public class AdminAllBooksService implements Service {
-    BookDao bookDao = new BookDaoImpl();
+public class AdminAllGenresService implements Service {
+    GenreDao genreDao = new GenreDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
@@ -29,10 +29,10 @@ public class AdminAllBooksService implements Service {
         Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         if (isAdmin != null && isAdmin.equals(true)) {
-            List<Book> bookList = bookDao.getAll(languageId);
-            session.setAttribute(BOOK_LIST, bookList);
+            List<Genre> genreList = genreDao.getAll(languageId);
 
-            dispatcher = req.getRequestDispatcher(ALL_BOOKS_JSP);
+            session.setAttribute(GENRE_LIST, genreList);
+            dispatcher = req.getRequestDispatcher(ALL_GENRES_JSP);
             dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(ERROR_JSP);

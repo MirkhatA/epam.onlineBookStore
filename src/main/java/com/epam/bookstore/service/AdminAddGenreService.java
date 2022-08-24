@@ -1,8 +1,7 @@
 package com.epam.bookstore.service;
 
-import com.epam.bookstore.dao.BookDao;
-import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
-import com.epam.bookstore.entity.Book;
+import com.epam.bookstore.dao.GenreDao;
+import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,13 +11,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.Constants.CREATE_GENRE_SUCCESS;
+import static com.epam.bookstore.constants.Constants.IS_ADMIN;
+import static com.epam.bookstore.constants.MessageConstants.GENRE_CREATE_SUCCESS_MSG;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
-public class AdminAllBooksService implements Service {
-    BookDao bookDao = new BookDaoImpl();
+public class AdminAddGenreService implements Service {
+    GenreDao genreDao = new GenreDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
@@ -26,13 +28,15 @@ public class AdminAllBooksService implements Service {
         HttpSession session = req.getSession();
 
         Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
-        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         if (isAdmin != null && isAdmin.equals(true)) {
-            List<Book> bookList = bookDao.getAll(languageId);
-            session.setAttribute(BOOK_LIST, bookList);
+            List<String> genreParams = new ArrayList<>();
 
-            dispatcher = req.getRequestDispatcher(ALL_BOOKS_JSP);
+            genreParams.add(req.getParameter("genreNameEn"));
+            genreParams.add(req.getParameter("genreNameRu"));
+            genreDao.create(genreParams);
+            req.setAttribute(CREATE_GENRE_SUCCESS, GENRE_CREATE_SUCCESS_MSG);
+            dispatcher = req.getRequestDispatcher(ADD_GENRE_JSP);
             dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(ERROR_JSP);

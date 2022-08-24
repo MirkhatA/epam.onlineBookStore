@@ -1,8 +1,9 @@
 package com.epam.bookstore.service;
 
-import com.epam.bookstore.dao.BookDao;
-import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
+import com.epam.bookstore.dao.GenreDao;
+import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
 import com.epam.bookstore.entity.Book;
+import com.epam.bookstore.entity.Genre;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,24 +16,29 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.BOOK_DELETE_SUCCESS_MSG;
+import static com.epam.bookstore.constants.MessageConstants.GENRE_DELETE_SUCCESS_MSG;
 import static com.epam.bookstore.constants.PageNameConstants.*;
 
-public class AdminAllBooksService implements Service {
-    BookDao bookDao = new BookDaoImpl();
+public class AdminDeleteGenreService implements Service {
+    GenreDao genreDao = new GenreDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
+        Long genreId = Long.parseLong(req.getParameter(ID));
         Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
         Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
 
         if (isAdmin != null && isAdmin.equals(true)) {
-            List<Book> bookList = bookDao.getAll(languageId);
-            session.setAttribute(BOOK_LIST, bookList);
+            genreDao.delete(genreId);
+            List<Genre> genreList = genreDao.getAll(languageId);
+            session.setAttribute(GENRE_LIST, genreList);
 
-            dispatcher = req.getRequestDispatcher(ALL_BOOKS_JSP);
+            req.setAttribute(DELETE_GENRE_SUCCESS, GENRE_DELETE_SUCCESS_MSG);
+            dispatcher = req.getRequestDispatcher(ALL_GENRES_JSP);
             dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(ERROR_JSP);

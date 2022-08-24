@@ -1,8 +1,7 @@
 package com.epam.bookstore.service;
 
-import com.epam.bookstore.dao.BookDao;
-import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
-import com.epam.bookstore.entity.Book;
+import com.epam.bookstore.dao.GenreDao;
+import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +14,11 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.*;
+import static com.epam.bookstore.constants.PageNameConstants.EDIT_GENRE_JSP;
+import static com.epam.bookstore.constants.PageNameConstants.ERROR_JSP;
 
-public class AdminAllBooksService implements Service {
-    BookDao bookDao = new BookDaoImpl();
+public class ShowGenreEditDetailsService implements Service {
+    GenreDao genreDao = new GenreDaoImpl();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
@@ -26,17 +26,18 @@ public class AdminAllBooksService implements Service {
         HttpSession session = req.getSession();
 
         Boolean isAdmin = (Boolean) session.getAttribute(IS_ADMIN);
-        Integer languageId = (Integer) session.getAttribute(LANGUAGE_ID);
-
         if (isAdmin != null && isAdmin.equals(true)) {
-            List<Book> bookList = bookDao.getAll(languageId);
-            session.setAttribute(BOOK_LIST, bookList);
-
-            dispatcher = req.getRequestDispatcher(ALL_BOOKS_JSP);
+            Long genreId = Long.parseLong(req.getParameter(ID));
+            List<String> genreParams = genreDao.getById(genreId);
+            session.setAttribute(GENRE_ID, genreId);
+            session.setAttribute(GENRE_PARAMS_EN, genreParams.get(ENGLISH_LANGUAGE_ID - 1));
+            session.setAttribute(GENRE_PARAMS_RU, genreParams.get(RUSSIAN_LANGUAGE_ID - 1));
+            dispatcher = req.getRequestDispatcher(EDIT_GENRE_JSP);
             dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
+
     }
 }

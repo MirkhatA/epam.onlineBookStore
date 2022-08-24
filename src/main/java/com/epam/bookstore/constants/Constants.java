@@ -4,6 +4,7 @@ public class Constants {
 
     public static final String ID = "id";
     public static final String BOOK_ID = "BOOK_ID";
+    public static final String GENRE_ID = "BOOK_ID";
     public static final String USER_ID = "userId";
     public static final String LANGUAGE_ID = "languageId";
     public static final String ORDER_ID = "orderId";
@@ -65,8 +66,10 @@ public class Constants {
     public static final String OLD_PASSWORD_IS_INCORRECT = "oldPasswordIsIncorrect";
     public static final String EDIT_PASSWORD_SUCCESS = "editPasswordSuccess";
     public static final String EDIT_PROFILE_SUCCESS = "editProfileSuccess";
+    public static final String EDIT_GENRE_SUCCESS = "editGenreSuccess";
     public static final String EDIT_BOOK_SUCCESS = "editBookSuccess";
     public static final String CREATE_BOOK_SUCCESS = "createBookSuccess";
+    public static final String CREATE_GENRE_SUCCESS = "createGenreSuccess";
     public static final String DELETE_BOOK_SUCCESS = "deleteBookSuccess";
     public static final String EMAIL_IS_TAKEN = "emailIsTaken";
     public static final String MOBILE_IS_TAKEN = "mobileIsTaken";
@@ -74,10 +77,14 @@ public class Constants {
     public static final String CART_IS_EMPTY = "cartIsEmpty";
     public static final String REGISTER_SUCCESS = "registerSuccess";
     public static final String ORDER_CREATED = "orderCreated";
+    public static final String DELETE_GENRE_SUCCESS = "orderDeleted";
 
     public static final String EN = "en";
     public static final String RU = "ru";
     public static final Integer ENGLISH_LANGUAGE_ID = 1;
     public static final Integer RUSSIAN_LANGUAGE_ID = 2;
+    public static final String GENRE_PARAMS_EN = "genreParamEn";
+    public static final String GENRE_PARAMS_RU = "genreParamRu";
+
     public static final String INACTIVE = "Inactive";
 }
