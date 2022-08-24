@@ -37,7 +37,7 @@ public class DecreaseItemInCartService implements Service {
                 Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
                 session.setAttribute(CART_LIST, cartList);
                 session.setAttribute(TOTAL_PRICE, totalPrice);
-                dispatcher = req.getRequestDispatcher(cartJsp);
+                dispatcher = req.getRequestDispatcher(CART_JSP);
                 dispatcher.forward(req, res);
             } else {
                 cartDao.decreaseBookInCart(userId, bookId);
@@ -45,12 +45,12 @@ public class DecreaseItemInCartService implements Service {
                 Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
                 session.setAttribute(TOTAL_PRICE, totalPrice);
                 session.setAttribute(CART_LIST, cartList);
-                dispatcher = req.getRequestDispatcher(cartJsp);
+                dispatcher = req.getRequestDispatcher(CART_JSP);
                 dispatcher.forward(req, res);
             }
         } else {
             req.setAttribute(PLEASE_LOGIN, PLEASE_LOGIN_MSG);
-            dispatcher = req.getRequestDispatcher(loginJsp);
+            dispatcher = req.getRequestDispatcher(LOGIN_JSP);
             dispatcher.forward(req, res);
         }
     }

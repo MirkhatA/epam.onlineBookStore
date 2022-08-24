@@ -33,18 +33,18 @@ public class AdminDeleteUserService implements Service {
         if (isAdmin != null && isAdmin.equals(true)) {
             if (userDao.getOrdersNumber(id) > 0) {
                 session.setAttribute(HAS_ORDERS, true);
-                dispatcher = req.getRequestDispatcher(allUsersJsp);
+                dispatcher = req.getRequestDispatcher(ALL_USERS_JSP);
                 dispatcher.forward(req, res);
             } else {
                 userDao.deleteUser(id);
 
                 List<User> userList = userDao.getAll(languageId);
                 session.setAttribute(USER_LIST, userList);
-                dispatcher = req.getRequestDispatcher(allUsersJsp);
+                dispatcher = req.getRequestDispatcher(ALL_USERS_JSP);
                 dispatcher.forward(req, res);
             }
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

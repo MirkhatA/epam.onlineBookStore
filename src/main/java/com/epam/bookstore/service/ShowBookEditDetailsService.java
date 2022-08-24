@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.editBookJsp;
+import static com.epam.bookstore.constants.PageNameConstants.EDIT_BOOK_JSP;
 
 public class ShowBookEditDetailsService implements Service {
     BookDao bookDao = new BookDaoImpl();
@@ -34,7 +34,7 @@ public class ShowBookEditDetailsService implements Service {
         session.setAttribute(BOOK_ID, bookId);
         session.setAttribute(BOOK_EN, bookEn);
         session.setAttribute(BOOK_RU, bookRu);
-        dispatcher = req.getRequestDispatcher(editBookJsp);
+        dispatcher = req.getRequestDispatcher(EDIT_BOOK_JSP);
         dispatcher.forward(req, res);
     }
 }

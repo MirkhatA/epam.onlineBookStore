@@ -1,9 +1,7 @@
 package com.epam.bookstore.service;
 
 import com.epam.bookstore.dao.BookDao;
-import com.epam.bookstore.dao.GenreDao;
 import com.epam.bookstore.dao.daoImpl.BookDaoImpl;
-import com.epam.bookstore.dao.daoImpl.GenreDaoImpl;
 import com.epam.bookstore.entity.Book;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +15,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
+import static com.epam.bookstore.constants.PageNameConstants.MAIN_JSP;
 
 public class ShowBooksByGenreService implements Service {
     BookDao bookDao = new BookDaoImpl();
@@ -32,7 +30,7 @@ public class ShowBooksByGenreService implements Service {
         List<Book> bookList = bookDao.getBooksByGenreId(genreId, languageId);
 
         session.setAttribute(BOOK_LIST, bookList);
-        dispatcher = req.getRequestDispatcher(mainJsp);
+        dispatcher = req.getRequestDispatcher(MAIN_JSP);
         dispatcher.forward(req, res);
     }
 }

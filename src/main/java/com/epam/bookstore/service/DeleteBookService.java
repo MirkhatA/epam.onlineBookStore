@@ -16,8 +16,7 @@ import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.MessageConstants.BOOK_DELETE_SUCCESS_MSG;
-import static com.epam.bookstore.constants.PageNameConstants.allBooksJsp;
-import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class DeleteBookService implements Service {
     BookDao bookDao = new BookDaoImpl();
@@ -37,10 +36,10 @@ public class DeleteBookService implements Service {
             session.setAttribute(BOOK_LIST, bookList);
 
             req.setAttribute(DELETE_BOOK_SUCCESS, BOOK_DELETE_SUCCESS_MSG);
-            dispatcher = req.getRequestDispatcher(allBooksJsp);
+            dispatcher = req.getRequestDispatcher(ALL_BOOKS_JSP);
             dispatcher.forward(req, res);
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

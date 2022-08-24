@@ -47,10 +47,10 @@ public class AddBookService implements Service {
 
             bookDao.create(bookParams);
             req.setAttribute(CREATE_BOOK_SUCCESS, BOOK_CREATE_SUCCESS_MSG);
-            dispatcher = req.getRequestDispatcher(addBooksJsp);
+            dispatcher = req.getRequestDispatcher(ADD_BOOK_JSP);
             dispatcher.forward(req, res);
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

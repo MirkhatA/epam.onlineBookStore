@@ -17,8 +17,7 @@ import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.MessageConstants.BOOK_UPDATE_SUCCESS_MSG;
-import static com.epam.bookstore.constants.PageNameConstants.editBookJsp;
-import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class EditBookService implements Service{
     BookDao bookDao = new BookDaoImpl();
@@ -49,10 +48,10 @@ public class EditBookService implements Service{
 
             bookDao.update(bookParams, bookId);
             req.setAttribute(EDIT_BOOK_SUCCESS, BOOK_UPDATE_SUCCESS_MSG);
-            dispatcher = req.getRequestDispatcher(editBookJsp);
+            dispatcher = req.getRequestDispatcher(EDIT_BOOK_JSP);
             dispatcher.forward(req, res);
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

@@ -30,22 +30,22 @@ public class EditPasswordService implements Service {
 
         if (!req.getParameter(OLD_PASSWORD).equals(req.getParameter(PASSWORD_REPEAT))) {
             req.setAttribute(PASSWORDS_ARE_DIFFERENT, SAME_PASSWORDS_MSG);
-            dispatcher = req.getRequestDispatcher(changePasswordJsp);
+            dispatcher = req.getRequestDispatcher(CHANGE_PASSWORD_JSP);
             dispatcher.forward(req, res);
         } else if (req.getParameter(OLD_PASSWORD).isEmpty() || req.getParameter(NEW_PASSWORD).isEmpty() ||
                 req.getParameter(PASSWORD_REPEAT).isEmpty()) {
             req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
-            dispatcher = req.getRequestDispatcher(changePasswordJsp);
+            dispatcher = req.getRequestDispatcher(CHANGE_PASSWORD_JSP);
             dispatcher.forward(req, res);
         } else if (!oldPassword.equals(DigestUtils.md5Hex(req.getParameter(OLD_PASSWORD)))) {
             req.setAttribute(OLD_PASSWORD_IS_INCORRECT, OLD_PASSWORD_INCORRECT_MSG);
-            dispatcher = req.getRequestDispatcher(changePasswordJsp);
+            dispatcher = req.getRequestDispatcher(CHANGE_PASSWORD_JSP);
             dispatcher.forward(req, res);
         } else {
             String newPassword = DigestUtils.md5Hex(req.getParameter(NEW_PASSWORD));
             userDao.updatePassword(userId, newPassword);
             req.setAttribute(EDIT_PASSWORD_SUCCESS, PASSWORD_UPDATED_SUCCESS_MSG);
-            dispatcher = req.getRequestDispatcher(changePasswordJsp);
+            dispatcher = req.getRequestDispatcher(CHANGE_PASSWORD_JSP);
             dispatcher.forward(req, res);
         }
     }

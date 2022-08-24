@@ -32,15 +32,15 @@ public class MakeOrderService implements Service{
 
         if (userId != null) {
             if (!cartList.isEmpty()) {
-                dispatcher = req.getRequestDispatcher(orderAddressJsp);
+                dispatcher = req.getRequestDispatcher(ORDER_ADDRESS_JSP);
                 dispatcher.forward(req, res);
             } else {
                 req.setAttribute(CART_IS_EMPTY, CART_IS_EMPTY);
-                dispatcher = req.getRequestDispatcher(cartJsp);
+                dispatcher = req.getRequestDispatcher(CART_JSP);
                 dispatcher.forward(req, res);
             }
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

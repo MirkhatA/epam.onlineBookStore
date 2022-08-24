@@ -30,6 +30,6 @@ public class ChangeLanguageService implements Service {
         }
 
         session.setAttribute(LANGUAGE_ID, languageId);
-        req.getRequestDispatcher(indexJsp).forward(req, res);
+        req.getRequestDispatcher(INDEX_JSP).forward(req, res);
     }
 }

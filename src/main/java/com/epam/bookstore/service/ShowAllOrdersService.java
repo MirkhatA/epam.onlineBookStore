@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.ordersJsp;
+import static com.epam.bookstore.constants.PageNameConstants.ORDER_JSP;
 
 public class ShowAllOrdersService implements Service {
     OrderDao orderDao = new OrderDaoImpl();
@@ -30,7 +30,7 @@ public class ShowAllOrdersService implements Service {
         List<Order> orderList = orderDao.getAllByUserId(userId, languageId);
 
         session.setAttribute(ORDER_LIST, orderList);
-        dispatcher = req.getRequestDispatcher(ordersJsp);
+        dispatcher = req.getRequestDispatcher(ORDER_JSP);
         dispatcher.forward(req, res);
     }
 }

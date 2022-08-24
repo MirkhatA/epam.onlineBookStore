@@ -24,8 +24,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.MessageConstants.FORBIDDEN_USER_MSG;
-import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
+import static com.epam.bookstore.constants.PageNameConstants.MAIN_JSP;
 
 public class ShowMainPageService implements Service{
     private BookDao bookDao = new BookDaoImpl();
@@ -50,7 +49,7 @@ public class ShowMainPageService implements Service{
         session.setAttribute(AUTHOR_LIST, authorList);
         session.setAttribute(PUBLISHER_LIST, publisherList);
 
-        dispatcher = req.getRequestDispatcher(mainJsp);
+        dispatcher = req.getRequestDispatcher(MAIN_JSP);
         dispatcher.forward(req, res);
     }
 }

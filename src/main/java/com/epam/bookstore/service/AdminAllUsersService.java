@@ -34,10 +34,10 @@ public class AdminAllUsersService implements Service {
             List<User> userList = userDao.getAll(languageId);
 
             session.setAttribute(USER_LIST, userList);
-            dispatcher = req.getRequestDispatcher(allUsersJsp);
+            dispatcher = req.getRequestDispatcher(ALL_USERS_JSP);
             dispatcher.forward(req, res);
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
 

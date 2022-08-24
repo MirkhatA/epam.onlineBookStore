@@ -30,24 +30,24 @@ public class RegistrationService implements Service{
 
         if (!req.getParameter(PASSWORD).equals(req.getParameter(REPEAT_PASSWORD))) {
             req.setAttribute(PASSWORDS_ARE_DIFFERENT, SAME_PASSWORDS_MSG);
-            dispatcher = req.getRequestDispatcher(registrationJsp);
+            dispatcher = req.getRequestDispatcher(REGISTRATION_JSP);
             dispatcher.forward(req, res);
         } else if (userDao.isEmailIsTaken(req.getParameter(EMAIL))) {
             req.setAttribute(EMAIL_IS_TAKEN, EMAIL_IS_TAKEN_MSG);
-            dispatcher = req.getRequestDispatcher(registrationJsp);
+            dispatcher = req.getRequestDispatcher(REGISTRATION_JSP);
             dispatcher.forward(req, res);
         } else if (userDao.isMobileTaken(req.getParameter(MOBILE))) {
             req.setAttribute(MOBILE_IS_TAKEN, PHONE_IS_TAKEN_MSG);
-            dispatcher = req.getRequestDispatcher(registrationJsp);
+            dispatcher = req.getRequestDispatcher(REGISTRATION_JSP);
             dispatcher.forward(req, res);
         } else if (!isDataFilled(user)) {
             req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
-            dispatcher = req.getRequestDispatcher(registrationJsp);
+            dispatcher = req.getRequestDispatcher(REGISTRATION_JSP);
             dispatcher.forward(req, res);
         } else {
             userDao.create(user);
             req.setAttribute(REGISTER_SUCCESS, REGISTER_SUCCESS_MSG);
-            dispatcher = req.getRequestDispatcher(loginJsp);
+            dispatcher = req.getRequestDispatcher(LOGIN_JSP);
             dispatcher.forward(req, res);
         }
     }

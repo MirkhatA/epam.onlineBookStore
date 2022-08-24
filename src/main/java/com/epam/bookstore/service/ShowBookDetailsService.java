@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.bookDetailsJsp;
+import static com.epam.bookstore.constants.PageNameConstants.BOOK_DETAILS_JSP;
 
 public class ShowBookDetailsService implements Service {
     BookDao bookDao = new BookDaoImpl();
@@ -30,7 +30,7 @@ public class ShowBookDetailsService implements Service {
         Book book = bookDao.getById(bookId, languageId);
 
         session.setAttribute(BOOK, book);
-        dispatcher = req.getRequestDispatcher(bookDetailsJsp);
+        dispatcher = req.getRequestDispatcher(BOOK_DETAILS_JSP);
         dispatcher.forward(req, res);
     }
 }

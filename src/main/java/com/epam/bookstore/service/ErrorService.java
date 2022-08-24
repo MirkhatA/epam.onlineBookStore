@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+import static com.epam.bookstore.constants.PageNameConstants.ERROR_JSP;
 
 public class ErrorService implements Service{
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException, SQLException {
-        res.sendRedirect(errorJsp);
+        res.sendRedirect(ERROR_JSP);
     }
 }

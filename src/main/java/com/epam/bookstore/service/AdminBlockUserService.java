@@ -15,8 +15,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.allUsersJsp;
-import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class AdminBlockUserService implements Service {
     UserDao userDao = new UserDaoImpl();
@@ -35,10 +34,10 @@ public class AdminBlockUserService implements Service {
             userDao.blockUser(id);
             List<User> userList = userDao.getAll(languageId);
             session.setAttribute(USER_LIST, userList);
-            dispatcher = req.getRequestDispatcher(allUsersJsp);
+            dispatcher = req.getRequestDispatcher(ALL_USERS_JSP);
             dispatcher.forward(req, res);
         } else {
-            dispatcher = req.getRequestDispatcher(errorJsp);
+            dispatcher = req.getRequestDispatcher(ERROR_JSP);
             dispatcher.forward(req, res);
         }
     }

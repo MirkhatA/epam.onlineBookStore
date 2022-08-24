@@ -17,8 +17,7 @@ import java.text.ParseException;
 
 import static com.epam.bookstore.constants.Constants.*;
 import static com.epam.bookstore.constants.MessageConstants.WRONG_LOGIN_OR_PASS_MSG;
-import static com.epam.bookstore.constants.PageNameConstants.loginJsp;
-import static com.epam.bookstore.constants.PageNameConstants.mainJsp;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class LoginService implements Service {
     UserDao userDao = new UserDaoImpl();
@@ -46,20 +45,20 @@ public class LoginService implements Service {
 
             if (user.getStatus().equals(INACTIVE)) {
                 session.setAttribute(IS_BLOCKED, true);
-                dispatcher = req.getRequestDispatcher(loginJsp);
+                dispatcher = req.getRequestDispatcher(LOGIN_JSP);
                 dispatcher.forward(req, res);
             } else if (UserValidator.isAdmin(user.getRoleId())) {
                 session.setAttribute(IS_ADMIN, true);
-                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher = req.getRequestDispatcher(MAIN_JSP);
                 dispatcher.forward(req, res);
             } else {
                 session.setAttribute(IS_ADMIN, false);
-                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher = req.getRequestDispatcher(MAIN_JSP);
                 dispatcher.forward(req, res);
             }
         } else {
             req.setAttribute(WRONG_DATA, WRONG_LOGIN_OR_PASS_MSG);
-            dispatcher = req.getRequestDispatcher(loginJsp);
+            dispatcher = req.getRequestDispatcher(LOGIN_JSP);
             dispatcher.forward(req, res);
         }
     }

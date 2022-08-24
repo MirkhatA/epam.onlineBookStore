@@ -172,7 +172,6 @@ public class BookDaoImpl implements BookDao {
         connection = connectionPool.takeConnection();
 
         try (PreparedStatement ps = connection.prepareStatement(DELETE_BOOK_BY_ID)) {
-            System.out.println(id);
             ps.setLong(1, id);
             ps.executeUpdate();
         } finally {

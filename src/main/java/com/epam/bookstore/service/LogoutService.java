@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import static com.epam.bookstore.constants.PageNameConstants.indexJsp;
+import static com.epam.bookstore.constants.PageNameConstants.INDEX_JSP;
 
 public class LogoutService implements Service{
     @Override
@@ -19,7 +19,7 @@ public class LogoutService implements Service{
 
         session.invalidate();
 
-        dispatcher = req.getRequestDispatcher(indexJsp);
+        dispatcher = req.getRequestDispatcher(INDEX_JSP);
         dispatcher.forward(req, res);
     }
 }

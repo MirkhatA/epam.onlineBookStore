@@ -33,7 +33,7 @@ public class SetOrderDataService implements Service{
         if (order.getFullName().isEmpty() || order.getMobile().isEmpty() || order.getAddress().isEmpty() ||
                 order.getPaymentWay().isEmpty()) {
             req.setAttribute(EMPTY_FIELDS, FILL_ALL_DATA_MSG);
-            dispatcher = req.getRequestDispatcher(orderAddressJsp);
+            dispatcher = req.getRequestDispatcher(ORDER_ADDRESS_JSP);
             dispatcher.forward(req, res);
         } else {
             session.setAttribute(RECEIVER_NAME, order.getFullName());
@@ -42,7 +42,7 @@ public class SetOrderDataService implements Service{
             session.setAttribute(COMMENT, order.getComment());
             session.setAttribute(PAYMENT_WAY, order.getPaymentWay());
 
-            dispatcher = req.getRequestDispatcher(orderCheckoutJsp);
+            dispatcher = req.getRequestDispatcher(ORDER_CHECKOUT_JSP);
             dispatcher.forward(req, res);
         }
     }

@@ -38,18 +38,18 @@ public class AddItemToCartService implements Service {
                 Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
                 session.setAttribute(CART_LIST, cartList);
                 session.setAttribute(TOTAL_PRICE, totalPrice);
-                dispatcher = req.getRequestDispatcher(cartJsp);
+                dispatcher = req.getRequestDispatcher(CART_JSP);
                 dispatcher.forward(req, res);
             } else {
                 cartDao.addBookToCart(userId, bookId);
                 req.setAttribute(ITEM_ADDED_TO_CART, ITEM_ADDED_TO_CART_MSG);
-                dispatcher = req.getRequestDispatcher(mainJsp);
+                dispatcher = req.getRequestDispatcher(MAIN_JSP);
                 dispatcher.forward(req, res);
             }
 
         } else {
             req.setAttribute(PLEASE_LOGIN, PLEASE_LOGIN_MSG);
-            dispatcher = req.getRequestDispatcher(loginJsp);
+            dispatcher = req.getRequestDispatcher(LOGIN_JSP);
             dispatcher.forward(req, res);
         }
     }

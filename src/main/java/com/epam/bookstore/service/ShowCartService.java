@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.PageNameConstants.cartJsp;
+import static com.epam.bookstore.constants.PageNameConstants.CART_JSP;
 
 public class ShowCartService implements Service{
     CartDao cartDao = new CartDaoImpl();
@@ -32,7 +32,7 @@ public class ShowCartService implements Service{
         Double totalPrice = cartDao.getTotalPriceFromCart(userId, languageId);
         session.setAttribute(TOTAL_PRICE, totalPrice);
         session.setAttribute(CART_LIST, cartList);
-        dispatcher = req.getRequestDispatcher(cartJsp);
+        dispatcher = req.getRequestDispatcher(CART_JSP);
         dispatcher.forward(req, res);
     }
 }

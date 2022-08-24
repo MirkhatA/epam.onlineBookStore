@@ -17,9 +17,8 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.*;
-import static com.epam.bookstore.constants.MessageConstants.*;
-import static com.epam.bookstore.constants.PageNameConstants.changePasswordJsp;
-import static com.epam.bookstore.constants.PageNameConstants.ordersJsp;
+import static com.epam.bookstore.constants.MessageConstants.ORDER_CREATED_MSG;
+import static com.epam.bookstore.constants.PageNameConstants.ORDER_JSP;
 
 public class SubmitOrderService implements Service {
     OrderDao orderDao = new OrderDaoImpl();
@@ -49,7 +48,7 @@ public class SubmitOrderService implements Service {
 
         session.setAttribute(ORDER_LIST, orderList);
         req.setAttribute(ORDER_CREATED, ORDER_CREATED_MSG);
-        dispatcher = req.getRequestDispatcher(ordersJsp);
+        dispatcher = req.getRequestDispatcher(ORDER_JSP);
         dispatcher.forward(req, res);
     }
 }
