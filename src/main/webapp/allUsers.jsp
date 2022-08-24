@@ -3,8 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${sessionScope.languageName}"/>
-<fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
+<fmt:setLocale value="${sessionScope.user}"/>
 <jsp:include page="header.jsp"/>
 
 <main class="d-flex flex-nowrap">
@@ -19,13 +19,13 @@
 
         <table class="table table-hover">
             <tr>
-                <th>id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Mobile</th>
-                <th>Registered date</th>
+                <th>Id></th>
+                <th><fmt:message key="label.firstName"/></th>
+                <th><fmt:message key="label.lastName"/></th>
+                <th><fmt:message key="label.email"/></th>
+                <th><fmt:message key="label.address"/></th>
+                <th><fmt:message key="label.mobile"/></th>
+                <th><fmt:message key="label.registeredDate"/></th>
                 <th>Status</th>
                 <th></th>
             </tr>

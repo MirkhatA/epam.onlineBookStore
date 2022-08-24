@@ -35,6 +35,7 @@ public class LanguageFilter implements Filter {
 
         servletResponse.setContentType("text/html;charset=UTF-8");
 
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

@@ -3,8 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${sessionScope.languageName}"/>
-<fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
+<fmt:setLocale value="${sessionScope.user}"/>
 <jsp:include page="header.jsp"/>
 
 <div class="container">

@@ -3,9 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${sessionScope.languageName}"/>
-<fmt:setLocale value="${sessionScope.user}"/>
-
 <fmt:setBundle basename="messages"/>
+<fmt:setLocale value="${sessionScope.user}"/>
 <jsp:include page="header.jsp"/>
 
 <main class="d-flex flex-nowrap">
@@ -50,7 +49,8 @@
                         <label for="bookTitleRu" class="col-md-2 col-form-label"><fmt:message
                                 key="label.bookTitleRu"/></label>
                         <div class="col-sm-10">
-                            <input name="bookTitleRu" type="text" class="form-control" id="bookTitleRu" value="${sessionScope.bookRu.title}">
+                            <input name="bookTitleRu" type="text" class="form-control" id="bookTitleRu"
+                                   value="${sessionScope.bookRu.title}">
                         </div>
                     </div>
                     <div class="mb-2 row">

@@ -8,24 +8,16 @@
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/allBooks" class="nav-link link-dark">
-                Get all books
-            </a>
+            <a href="/allBooks" class="nav-link link-dark"><fmt:message key="button.getAllBooks"/></a>
         </li>
         <li class="nav-item">
-            <a href="/addBook.jsp" class="nav-link link-dark">
-                Add book
-            </a>
+            <a href="/addBook.jsp" class="nav-link link-dark"><fmt:message key="button.addBook"/></a>
         </li>
         <li class="nav-item">
-            <a href="/allUsers" class="nav-link link-dark">
-                Get all users
-            </a>
+            <a href="/allUsers" class="nav-link link-dark"><fmt:message key="button.getAllUsers"/></a>
         </li>
         <li class="nav-item">
-            <a href="/allOrders" class="nav-link link-dark">
-                Get all orders
-            </a>
+            <a href="/allOrders" class="nav-link link-dark"><fmt:message key="button.getAllOrders"/></a>
         </li>
     </ul>
 

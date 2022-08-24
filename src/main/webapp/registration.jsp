@@ -61,7 +61,7 @@
 
             <button class="w-100 btn btn-lg btn-primary mb-1 mt-4" type="submit"><fmt:message
                     key="button.signUp"/></button>
-            <p class="mb-3 text-muted"><a href="#"><fmt:message key="button.signIn"/></a></p>
+            <p class="mb-3 text-muted"><a href="login.jsp"><fmt:message key="button.signIn"/></a></p>
         </form>
     </div>
 </main>

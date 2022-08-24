@@ -3,8 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${sessionScope.languageName}"/>
-<fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
+<fmt:setLocale value="${sessionScope.user}"/>
 <jsp:include page="header.jsp"/>
 
 <div class="container">
@@ -30,10 +30,10 @@
 
             <table class="table table-hover">
                 <tr>
-                    <th scope="col">Book title</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Total price</th>
+                    <th scope="col"><fmt:message key="label.bookTitle"></th>
+                    <th scope="col"><fmt:message key="label.price"></th>
+                    <th scope="col"><fmt:message key="label.amount"></th>
+                    <th scope="col"><fmt:message key="label.totalPrice"></th>
                 </tr>
 
                 <c:forEach var="cartItem" items="${sessionScope.cartList}">

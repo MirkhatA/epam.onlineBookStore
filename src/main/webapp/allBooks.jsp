@@ -3,8 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${sessionScope.languageName}"/>
-<fmt:setLocale value="${sessionScope.user}"/>
 <fmt:setBundle basename="messages"/>
+<fmt:setLocale value="${sessionScope.user}"/>
 <jsp:include page="header.jsp"/>
 
 <main class="d-flex flex-nowrap">
@@ -23,12 +23,12 @@
                     <tr>
                         <th>id</th>
                         <th><fmt:message key="label.bookTitle"/></th>
-                        <th>Description</th>
-                        <th>Author</th>
-                        <th>Genre</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Publisher</th>
+                        <th><fmt:message key="label.bookTitle"/></th>
+                        <th><fmt:message key="label.author"/></th>
+                        <th><fmt:message key="label.genre"/></th>
+                        <th><fmt:message key="label.quantity"/></th>
+                        <th><fmt:message key="label.price"/></th>
+                        <th><fmt:message key="label.publisher"/></th>
                         <th></th>
                     </tr>
 
@@ -47,8 +47,8 @@
                             <td>${book.price}</td>
                             <td>${book.publisherName}</td>
                             <td>
-                                <a href="/showEditBook?id=${book.id}" type="button" class="btn btn-warning mb-1">Edit</a>
-                                <a href="/deleteBook?id=${book.id}" type="button" class="btn btn-danger">Delete</a>
+                                <a href="/showEditBook?id=${book.id}" type="button" class="btn btn-warning mb-1"><fmt:message key="button.edit"/></a>
+                                <a href="/deleteBook?id=${book.id}" type="button" class="btn btn-danger"><fmt:message key="button.delete"/></a>
                             </td>
                         </tr>
                     </c:forEach>
