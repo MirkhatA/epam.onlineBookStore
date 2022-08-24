@@ -20,4 +20,6 @@ public interface BookDao {
     void update(List<Book> bookParams, Long id) throws SQLException;
 
     Long getLastId() throws SQLException;
+
+    void delete(Long id) throws SQLException;
 }

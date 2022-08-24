@@ -15,9 +15,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.epam.bookstore.constants.Constants.IS_ADMIN;
-import static com.epam.bookstore.constants.Constants.LANGUAGE_ID;
-import static com.epam.bookstore.constants.PageNameConstants.errorJsp;
+import static com.epam.bookstore.constants.Constants.*;
+import static com.epam.bookstore.constants.MessageConstants.BOOK_CREATE_SUCCESS_MSG;
+import static com.epam.bookstore.constants.MessageConstants.BOOK_UPDATE_SUCCESS_MSG;
+import static com.epam.bookstore.constants.PageNameConstants.*;
 
 public class AddBookService implements Service {
     BookDao bookDao = new BookDaoImpl();
@@ -34,17 +35,20 @@ public class AddBookService implements Service {
 
             Book bookEng = new Book();
             setBookData(bookEng, req);
-            bookEng.setTitle("bookTitleEn");
-            bookEng.setDescription("bookDescriptionEn");
+            bookEng.setTitle(req.getParameter(BOOK_TITLE_EN));
+            bookEng.setDescription(req.getParameter(BOOK_DESCRIPTION_EN));
             bookParams.add(bookEng);
 
             Book bookRus = new Book();
             setBookData(bookRus, req);
-            bookRus.setTitle("bookTitleRu");
-            bookRus.setDescription("bookDescriptionRu");
+            bookRus.setTitle(req.getParameter(BOOK_TITLE_RU));
+            bookRus.setDescription(req.getParameter(BOOK_DESCRIPTION_RU));
             bookParams.add(bookRus);
 
             bookDao.create(bookParams);
+            req.setAttribute(CREATE_BOOK_SUCCESS, BOOK_CREATE_SUCCESS_MSG);
+            dispatcher = req.getRequestDispatcher(addBooksJsp);
+            dispatcher.forward(req, res);
         } else {
             dispatcher = req.getRequestDispatcher(errorJsp);
             dispatcher.forward(req, res);

@@ -13,6 +13,8 @@ public class MessageConstants {
     public static final String PHONE_IS_TAKEN_MSG = "alert.phoneIsTaken";
     public static final String PROFILE_UPDATE_SUCCESS_MSG = "success.editProfile";
     public static final String BOOK_UPDATE_SUCCESS_MSG = "success.editBook";
+    public static final String BOOK_CREATE_SUCCESS_MSG = "success.createBook";
+    public static final String BOOK_DELETE_SUCCESS_MSG = "success.deleteBook";
     public static final String WRONG_LOGIN_OR_PASS_MSG = "alert.wrongLoginOrPassword";
     public static final String CART_IS_EMPTY = "alert.cartIsEmpty";
     public static final String REGISTER_SUCCESS_MSG = "success.registered";

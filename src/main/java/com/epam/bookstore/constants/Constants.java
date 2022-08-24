@@ -66,6 +66,8 @@ public class Constants {
     public static final String EDIT_PASSWORD_SUCCESS = "editPasswordSuccess";
     public static final String EDIT_PROFILE_SUCCESS = "editProfileSuccess";
     public static final String EDIT_BOOK_SUCCESS = "editBookSuccess";
+    public static final String CREATE_BOOK_SUCCESS = "createBookSuccess";
+    public static final String DELETE_BOOK_SUCCESS = "deleteBookSuccess";
     public static final String EMAIL_IS_TAKEN = "emailIsTaken";
     public static final String MOBILE_IS_TAKEN = "mobileIsTaken";
     public static final String WRONG_DATA = "wrongData";

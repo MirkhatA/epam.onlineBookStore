@@ -33,6 +33,7 @@ public class BookDaoImpl implements BookDao {
             "quantity=?, price=?, author_id=?, publisher_id=?, genre_id=? WHERE id=? AND language_id=?;";
     private static final String ADD_BOOK = "INSERT INTO books VALUE (?, ?, ?, ?, ?, ?, ?, ?, 1, ?), (?, ?, ?, ?, ?, ?, ?, ?, 2, ?);";
     private static final String GET_LAST_ID = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
+    private static final String DELETE_BOOK_BY_ID = "DELETE FROM books WHERE id=?;";
 
     ConnectionPool connectionPool;
     Connection connection;
@@ -163,6 +164,20 @@ public class BookDaoImpl implements BookDao {
         }
 
         return lastId;
+    }
+
+    @Override
+    public void delete(Long id) throws SQLException {
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_BOOK_BY_ID)) {
+            System.out.println(id);
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
     }
 
     @Override

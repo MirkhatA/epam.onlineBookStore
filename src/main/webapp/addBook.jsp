@@ -29,6 +29,11 @@
                             <fmt:message key="success.editProfile"/>
                         </div>
                     </c:if>
+                    <c:if test="${requestScope.createBookSuccess != null}">
+                        <div class="alert alert-success" role="alert">
+                            <fmt:message key="success.editBook"/>
+                        </div>
+                    </c:if>
 
                     <div class="mb-2 row">
                         <label for="bookTitleEn" class="col-md-2 col-form-label"><fmt:message

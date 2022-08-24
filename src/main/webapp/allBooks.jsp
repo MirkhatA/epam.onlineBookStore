@@ -18,6 +18,7 @@
             <jsp:include page="adminProfileNavbar.jsp"/>
 
             <div class="col-md-7 ms-5 mt-5">
+
                 <table class="table table-hover">
                     <tr>
                         <th>id</th>
@@ -47,7 +48,7 @@
                             <td>${book.publisherName}</td>
                             <td>
                                 <a href="/showEditBook?id=${book.id}" type="button" class="btn btn-warning mb-1">Edit</a>
-                                <a href="" type="button" class="btn btn-danger">Delete</a>
+                                <a href="/deleteBook?id=${book.id}" type="button" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
