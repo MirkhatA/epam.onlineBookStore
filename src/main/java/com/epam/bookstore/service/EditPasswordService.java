@@ -28,7 +28,7 @@ public class EditPasswordService implements Service {
 
         String oldPassword = userDao.getUserPassword(userId);
 
-        if (!req.getParameter(OLD_PASSWORD).equals(req.getParameter(PASSWORD_REPEAT))) {
+        if (!req.getParameter(NEW_PASSWORD).equals(req.getParameter(PASSWORD_REPEAT))) {
             req.setAttribute(PASSWORDS_ARE_DIFFERENT, SAME_PASSWORDS_MSG);
             dispatcher = req.getRequestDispatcher(CHANGE_PASSWORD_JSP);
             dispatcher.forward(req, res);

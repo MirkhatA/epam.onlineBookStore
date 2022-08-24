@@ -43,16 +43,16 @@
             </div>
 
             <div class="mb-2 row">
-                <label for="passwordRepeat" class="col-md-2 col-form-label"><fmt:message key="input.repeatPassword"/></label>
+                <label for="password" class="col-md-2 col-form-label"><fmt:message key="input.newPassword"/></label>
                 <div class="col-sm-10">
-                    <input name="passwordRepeat" type="password" class="form-control" id="passwordRepeat">
+                    <input name="newPassword" type="password"  class="form-control" id="password">
                 </div>
             </div>
 
             <div class="mb-2 row">
-                <label for="password" class="col-md-2 col-form-label"><fmt:message key="input.newPassword"/></label>
+                <label for="passwordRepeat" class="col-md-2 col-form-label"><fmt:message key="input.repeatPassword"/></label>
                 <div class="col-sm-10">
-                    <input name="newPassword" type="password"  class="form-control" id="password">
+                    <input name="passwordRepeat" type="password" class="form-control" id="passwordRepeat">
                 </div>
             </div>
 
