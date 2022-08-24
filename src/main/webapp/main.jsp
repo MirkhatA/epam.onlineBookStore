@@ -29,7 +29,7 @@
                             </li>
                         </c:forEach>
                         <li class="nav-item">
-                            <a class="nav-link" href="/reset">
+                            <a class="nav-link" href="/showMainPage">
                                 <fmt:message key="label.reset" />
                             </a>
                         </li>

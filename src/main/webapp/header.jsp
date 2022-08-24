@@ -8,7 +8,6 @@
 <head>
     <title>Book store</title>
 
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
@@ -26,8 +25,8 @@
         </div>
 
         <div class="d-flex align-items-center">
-            <form class="w-100 me-3 m-0" role="search">
-                <input type="search" class="form-control" placeholder="<fmt:message key="label.search" />" aria-label="Search">
+            <form class="w-100 me-3 m-0" role="search" action="/searchBook">
+                <input type="search" class="form-control" name="search" placeholder="<fmt:message key="label.search"/>" aria-label="Search">
             </form>
 
             <ul class="navbar-nav me-3">

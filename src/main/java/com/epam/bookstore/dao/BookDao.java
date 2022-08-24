@@ -1,7 +1,6 @@
 package com.epam.bookstore.dao;
 
 import com.epam.bookstore.entity.Book;
-import com.epam.bookstore.entity.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,4 +23,6 @@ public interface BookDao {
     List<Book> getAllByStatus(int languageId) throws SQLException;
 
     void delete(Long id) throws SQLException;
+
+    List<Book> findBook(String searchTitle) throws SQLException;
 }

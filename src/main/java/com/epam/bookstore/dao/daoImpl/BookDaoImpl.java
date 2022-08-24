@@ -6,7 +6,6 @@ import com.epam.bookstore.entity.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static com.epam.bookstore.constants.Constants.ENGLISH_LANGUAGE_ID;
@@ -25,6 +24,7 @@ public class BookDaoImpl implements BookDao {
             "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
             "ON g.id=b.genre_id WHERE b.language_id=? AND a.language_id=? AND g.language_id=? AND b.genre_id=?;";
+    private static final String GET_ALL_BOOKS_BY_TITLE = "SELECT id, title, image FROM books WHERE title LIKE ? AND status='Active';";
     private static final String GET_ALL_BOOKS_BY_AUTHOR_ID = "SELECT b.id, b.title, b.description, b.image, b.quantity, b.author_id, b.publisher_id, b.genre_id," +
             "b.price, b.language_id, a.full_name as author_name, p.name as publisher_name, g.name as genre_name, b.status FROM books b " +
             "INNER JOIN authors a ON a.id=b.author_id INNER JOIN publishers p ON p.id=b.publisher_id INNER JOIN genres g " +
@@ -205,6 +205,30 @@ public class BookDaoImpl implements BookDao {
         } finally {
             connectionPool.returnConnection(connection);
         }
+    }
+
+    @Override
+    public List<Book> findBook(String searchTitle) throws SQLException {
+        List<Book> books = new ArrayList<>();
+
+        connectionPool = ConnectionPool.getInstance();
+        connection = connectionPool.takeConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(GET_ALL_BOOKS_BY_TITLE)) {
+            ps.setString(1, '%'+searchTitle+'%');
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getLong("id"));
+                book.setTitle(rs.getString("title"));
+                book.setImage(rs.getString("image"));
+                books.add(book);
+            }
+        } finally {
+            connectionPool.returnConnection(connection);
+        }
+
+        return books;
     }
 
     @Override

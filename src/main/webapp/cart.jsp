@@ -34,7 +34,7 @@
                     <tr>
                         <td>
                             <a href="/showBookDetails?id=${cartItem.bookId}">${cartItem.title}</a><br>
-                            <a href="/deleteItem?id=${cartItem.bookId}"><fmt:message key="label.delete"/></a>
+                            <a href="/deleteItem?id=${cartItem.bookId}"><fmt:message key="button.delete"/></a>
                         </td>
                         <td>${cartItem.price}</td>
                         <td>

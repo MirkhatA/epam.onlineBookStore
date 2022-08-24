@@ -33,13 +33,11 @@ public class EditProfileService implements Service {
         setUserData(user, req);
 
 
-        if (userDao.isEmailIsTaken(req.getParameter(EMAIL)) &&
-                !Objects.equals(req.getParameter(EMAIL), email)) {
+        if (userDao.isEmailIsTaken(req.getParameter(EMAIL)) && !Objects.equals(req.getParameter(EMAIL), email)) {
             req.setAttribute(EMAIL_IS_TAKEN, EMAIL_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(PROFILE_JSP);
             dispatcher.forward(req, res);
-        } else if (userDao.isMobileTaken(req.getParameter(MOBILE)) &&
-                !Objects.equals(req.getParameter(MOBILE), mobile)) {
+        } else if (userDao.isMobileTaken(req.getParameter(MOBILE)) && !Objects.equals(req.getParameter(MOBILE), mobile)) {
             req.setAttribute(MOBILE_IS_TAKEN, PHONE_IS_TAKEN_MSG);
             dispatcher = req.getRequestDispatcher(PROFILE_JSP);
             dispatcher.forward(req, res);
